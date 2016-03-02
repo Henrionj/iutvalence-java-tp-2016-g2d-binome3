@@ -13,8 +13,9 @@ public class Bishop extends Piece
 	/**
 	 * 
 	 */
-	public Bishop()
+	public Bishop(Board board)
 	{
+		super(board);
 		// TODO Auto-generated constructor stub
 	}
 	

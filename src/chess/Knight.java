@@ -13,8 +13,9 @@ public class Knight extends Piece
 	/**
 	 * 
 	 */
-	public Knight()
+	public Knight(Board board)
 	{
+		super(board);
 		// TODO Auto-generated constructor stub
 	}
 	

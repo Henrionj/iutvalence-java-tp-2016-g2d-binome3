@@ -13,8 +13,9 @@ public class King extends Piece
 	/**
 	 * 
 	 */
-	public King()
+	public King(Board board)
 	{
+		super(board);
 		// TODO Auto-generated constructor stub
 	}
 	
