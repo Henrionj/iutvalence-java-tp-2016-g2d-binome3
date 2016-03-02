@@ -12,7 +12,7 @@ public class Piece
 	private int posX;
 	private int posY;
 	
-	public Piece()
+	public Piece(Board board)
 	{
 		
 	}
