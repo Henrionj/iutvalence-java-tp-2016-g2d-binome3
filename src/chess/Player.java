@@ -1,15 +1,14 @@
-/**
- * 
- */
 package chess;
 
 /**
- * @author henrion & murer
+ * TODO.
  *
+ * @author henrion & murer
+ * @version TODO
  */
 public class Player
 {
-	private final static int NUMBER_OF_PIECES = 16;
+	private static final int NUMBER_OF_PIECES = 16;
 	private Piece pieces[];
 	
 	public Player(Board board)

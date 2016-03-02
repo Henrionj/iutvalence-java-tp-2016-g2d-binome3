@@ -1,17 +1,20 @@
 package chess;
 
+/**
+ * TODO.
+ *
+ * @author henrion & murer
+ * @version TODO
+ */
 public class Board
 {
-	private final static int WIDTH_DEFAULT = 8; // the default width size of
-	// the
-	// chessboard.
-	private final static int HEIGHT_DEFAULT = 8; // the default height size
-	
-	// of
-	// the chessboard.
-	
+	/** Default width of the chessboard. */
+	private static final int WIDTH_DEFAULT  = 8;
+	/** Default height of the chessboard. */
+	private static final int HEIGHT_DEFAULT = 8;
+
+	/** TODO. */
 	public Board()
 	{
 	}
-	
 }

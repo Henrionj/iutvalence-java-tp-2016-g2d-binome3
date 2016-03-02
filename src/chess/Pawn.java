@@ -1,18 +1,19 @@
-/**
- * 
- */
 package chess;
 
 /**
- * @author henrion & murer
+ * TODO.
  *
+ * @author henrion & murer
+ * @version TODO
  */
 public class Pawn extends Piece
 {
-	
+
 	/**
-	 * 
-	 */
+	 * TODO.
+	 *
+	 * @param board TODO
+     */
 	public Pawn(Board board)
 	{
 		super(board);

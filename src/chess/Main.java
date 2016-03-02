@@ -1,17 +1,19 @@
-/**
- * 
- */
 package chess;
 
+/* TODO Find a better class name. This one is ugly. */
 /**
- * @author henrion & murer
+ * TODO.
  *
+ * @author henrion & murer
+ * @version TODO
  */
 public class Main
 {
 	
 	/**
-	 * @param args
+	 * TODO.
+	 *
+	 * @param args TODO.
 	 */
 	public static void main(String[] args)
 	{
