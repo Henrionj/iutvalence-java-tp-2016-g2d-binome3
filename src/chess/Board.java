@@ -15,35 +15,50 @@ public class Board
 	/**number of pieces per player**/
 	private static final int NUMBER_OF_PIECES = 16;
 	/**the board of pieces for one player **/
-	private Piece pieces[];
+	private Piece black[];
+	private Piece white[];
 
 	/** TODO. */
 	public Board()
 	{
-		pieces = new Piece[NUMBER_OF_PIECES];
-		pieces[0] = new King(this);
-		pieces[1] = new Queen(this);
-		for (int i = 2; i < 4; i++)
-		{
-			pieces[i] = new Knight(this);
-		}
-		for (int i = 4; i < 6; i++)
-		{
-			pieces[i] = new Rook(this);
-		}
-		for (int i = 6; i < 8; i++)
-		{
-			pieces[i] = new Bishop(this);
-		}
-		for (int i = 8; i < 16; i++)
-		{
-			pieces[i] = new Pawn(this);
-		}
+		white = createPieceGame();
+		black = createPieceGame();
 		
 	}
 	
-	public Piece getPiece(int indice)
+	public Piece getBlackPiece(int indice)
 	{
-		return pieces[indice];
+		return black[indice];
+	}
+	
+	public Piece getWhitePiece(int indice)
+	{
+		return white[indice];
+	}
+	
+	public Piece[] createPieceGame()
+	{
+		Piece piece[];
+		piece = new Piece[NUMBER_OF_PIECES];
+		piece[0] = new King(this);
+		piece[1] = new Queen(this);
+		for (int i = 2; i < 4; i++)
+		{
+			piece[i] = new Knight(this);
+		}
+		for (int i = 4; i < 6; i++)
+		{
+			piece[i] = new Rook(this);
+		}
+		for (int i = 6; i < 8; i++)
+		{
+			piece[i] = new Bishop(this);
+		}
+		for (int i = 8; i < 16; i++)
+		{
+			piece[i] = new Pawn(this);
+		}
+		
+		return piece;
 	}
 }
