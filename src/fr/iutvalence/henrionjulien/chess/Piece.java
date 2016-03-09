@@ -6,10 +6,9 @@ package fr.iutvalence.henrionjulien.chess;
  * @author henrion & murer
  * @version TODO
  */
-public class Piece
+public abstract class Piece
 {
-
-	protected int default_move[][];
+	protected int defaultMove[][];
 	protected Board board;
 	
 	/**
@@ -22,9 +21,10 @@ public class Piece
 		this.board = board;
 	}
 
-	protected int[][] create_move()
-	{
-		int move[][] = {{0},{1}};
-		return move;
-	}
+	/**
+	 * TODO.
+	 * @return
+	 */
+	protected abstract int[][] createMove();
+
 }

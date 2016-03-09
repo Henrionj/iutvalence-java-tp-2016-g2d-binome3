@@ -17,10 +17,10 @@ public class Rook extends Piece
 	public Rook(Board board)
 	{
 		super(board);
-		default_move  = create_move();
+		defaultMove  = createMove();
 		// TODO Auto-generated constructor stub
 	}
-	protected int[][] create_move()
+	protected int[][] createMove()
 	{
 		int move[][] = {{0,0,8,-8},{8,-8,0,0}};
 		//[0,8],[0,-8],[8,0],[-8,0] maximal move possible for the rook.

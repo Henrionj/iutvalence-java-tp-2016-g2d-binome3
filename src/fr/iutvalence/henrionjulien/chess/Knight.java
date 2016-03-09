@@ -17,10 +17,11 @@ public class Knight extends Piece
 	public Knight(Board board)
 	{
 		super(board);
-		default_move  = create_move();
+		defaultMove  = createMove();
 		// TODO Auto-generated constructor stub
 	}
-	protected int[][] create_move()
+
+	protected int[][] createMove()
 	{
 		int move[][] = {{2,1,-1,-2,-2,-1,1,2},{-1,-2,-2,-1,1,2,2,1}};
 		//[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2],[1,2],[2,1] maximal move possible for the knight.

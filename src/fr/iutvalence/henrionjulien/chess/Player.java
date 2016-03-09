@@ -6,12 +6,6 @@ package fr.iutvalence.henrionjulien.chess;
  * @author henrion & murer
  * @version TODO
  */
-public class Player
-{
-
-	public Player()
-	{
-		
-	}
-
+public class Player {
+	/* TODO */
 }

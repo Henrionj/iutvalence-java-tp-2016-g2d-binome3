@@ -17,10 +17,10 @@ public class King extends Piece
 	public King(Board board)
 	{
 		super(board);
-		default_move  = create_move();
+		defaultMove  = createMove();
 		// TODO Auto-generated constructor stub
 	}
-	protected int[][] create_move()
+	protected int[][] createMove()
 	{
 		int move[][] = {{1,-1,-1,1,0,0,1,-1},{1,-1,1,-1,1,-1,0,0}};
 		//[1,1],[-1,-1],[-1,1],[1,-1],[0,1],[0,-1],[1,0],[-1,0] maximal move possible for the king.

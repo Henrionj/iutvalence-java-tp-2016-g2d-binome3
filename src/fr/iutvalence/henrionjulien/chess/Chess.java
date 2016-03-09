@@ -1,13 +1,12 @@
 package fr.iutvalence.henrionjulien.chess;
 
-/* TODO Find a better class name. This one is ugly. */
 /**
  * TODO.
  *
  * @author henrion & murer
  * @version TODO
  */
-public class Main
+public class Chess
 {
 	
 	/**
@@ -15,10 +14,9 @@ public class Main
 	 *
 	 * @param args TODO.
 	 */
-	public static void main(String[] args)
-	{
-		// TODO Auto-generated method stub
-		
+	public static void main(String[] args) {
+		Game game = new Game();
+		game.run();
 	}
 	
 }

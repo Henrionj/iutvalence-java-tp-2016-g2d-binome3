@@ -17,12 +17,12 @@ public class Pawn extends Piece
 	public Pawn(Board board)
 	{
 		super(board);
-		default_move  = create_move();
+		defaultMove  = createMove();
 	}
 	
-	protected int[][] create_move()
+	protected int[][] createMove()
 	{
-		return super.create_move();
+		return new int[][]{{0},{1}};
 	}
-	
+
 }

@@ -8,15 +8,24 @@ package fr.iutvalence.henrionjulien.chess;
  */
 public class Game
 {
+	private Board board;
+	private Player white;
+	private Player black;
+	private int turn;
+
 	/**
 	 * TODO.
-	 *
-	 * @param black TODO
-	 * @param white TODO
-	 * @param board TODO
      */
-	public Game(Player black, Player white, Board board)
+	public Game()
 	{
+		this.black = new Player();
+		this.white = new Player();
+		this.board = new Board();
+	}
+
+	public void run()
+	{
+		// TODO Auto-generated method stub
 		
 	}
 	
