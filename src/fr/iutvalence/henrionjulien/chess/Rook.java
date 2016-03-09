@@ -1,4 +1,4 @@
-package chess;
+package fr.iutvalence.henrionjulien.chess;
 
 /**
  * TODO.
@@ -6,7 +6,7 @@ package chess;
  * @author henrion & murer
  * @version TODO
  */
-public class Knight extends Piece
+public class Rook extends Piece
 {
 
 	/**
@@ -14,7 +14,7 @@ public class Knight extends Piece
 	 *
 	 * @param board TODO
      */
-	public Knight(Board board)
+	public Rook(Board board)
 	{
 		super(board);
 		// TODO Auto-generated constructor stub

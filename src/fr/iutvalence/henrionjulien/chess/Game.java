@@ -1,4 +1,4 @@
-package chess;
+package fr.iutvalence.henrionjulien.chess;
 
 /**
  * TODO.
