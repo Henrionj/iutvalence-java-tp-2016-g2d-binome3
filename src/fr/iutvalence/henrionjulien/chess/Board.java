@@ -24,6 +24,8 @@ public class Board
 		white = createPieceGame();
 		black = createPieceGame();
 		
+		
+		
 	}
 	
 	public Piece getBlackPiece(int indice)
@@ -61,4 +63,15 @@ public class Board
 		
 		return piece;
 	}
+	
+	
+	public static int getWidthDefault() {
+		return WIDTH_DEFAULT;
+	}
+
+	public static int getHeightDefault() {
+		return HEIGHT_DEFAULT;
+	}
+	
+	
 }

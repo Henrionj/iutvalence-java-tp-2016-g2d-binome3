@@ -9,8 +9,8 @@ package fr.iutvalence.henrionjulien.chess;
 public class Piece
 {
 
-	
-	private Board board;
+	protected int default_move[][];
+	protected Board board;
 	
 	/**
 	 * TODO.
@@ -19,7 +19,12 @@ public class Piece
      */
 	public Piece(Board board)
 	{
-		this.board = board; 
+		this.board = board;
 	}
 
+	protected int[][] create_move()
+	{
+		int move[][] = {{0},{1}};
+		return move;
+	}
 }

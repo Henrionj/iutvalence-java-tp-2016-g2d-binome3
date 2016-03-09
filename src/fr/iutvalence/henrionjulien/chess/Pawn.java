@@ -17,7 +17,12 @@ public class Pawn extends Piece
 	public Pawn(Board board)
 	{
 		super(board);
-		// TODO Auto-generated constructor stub
+		default_move  = create_move();
+	}
+	
+	protected int[][] create_move()
+	{
+		return super.create_move();
 	}
 	
 }
