@@ -17,14 +17,16 @@ public class Rook extends Piece
 	public Rook(Board board)
 	{
 		super(board);
+		// TODO Why don't you use the abstract class? _*/
 		defaultMove  = createMove();
-		// TODO Auto-generated constructor stub
 	}
+
+	@Override
 	protected int[][] createMove()
 	{
-		int move[][] = {{0,0,8,-8},{8,-8,0,0}};
+		// TODO Transform the next comment into javadoc.
 		//[0,8],[0,-8],[8,0],[-8,0] maximal move possible for the rook.
-		return move;
+		return new int[][]{{0,0,8,-8},{8,-8,0,0}};
 	}
 	
 }

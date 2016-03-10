@@ -17,15 +17,16 @@ public class Knight extends Piece
 	public Knight(Board board)
 	{
 		super(board);
+		// TODO Why don't you use the abstract class? _*/
 		defaultMove  = createMove();
-		// TODO Auto-generated constructor stub
 	}
 
+	@Override
 	protected int[][] createMove()
 	{
-		int move[][] = {{2,1,-1,-2,-2,-1,1,2},{-1,-2,-2,-1,1,2,2,1}};
+		// TODO Transform the next comment into javadoc.
 		//[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2],[1,2],[2,1] maximal move possible for the knight.
-		return move;
+		return new int[][]{{2,1,-1,-2,-2,-1,1,2},{-1,-2,-2,-1,1,2,2,1}};
 	}
 	
 }

@@ -17,15 +17,16 @@ public class Queen extends Piece
 	public Queen(Board board)
 	{
 		super(board);
+		// TODO Why don't you use the abstract class? _*/
 		defaultMove  = createMove();
-		// TODO Auto-generated constructor stub
 	}
-	
+
+	@Override
 	protected int[][] createMove()
 	{
-		int move[][] = {{8,-8,-8,8,0,0,8,-8},{8,-8,8,-8,8,-8,0,0}};
+		// TODO Transform the next comment into javadoc.
 		//[8,8],[-8,-8],[-8,8],[8,-8],[0,8],[0,-8],[8,0],[-8,0] maximal move possible for the queen.
-		return move;
+		return new int[][]{{8,-8,-8,8,0,0,8,-8},{8,-8,8,-8,8,-8,0,0}};
 	}
 	
 }

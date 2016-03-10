@@ -1,3 +1,6 @@
-/** TODO. 
- * default package of the game*/
+/** Main package.
+ *
+ * @author TODO
+ * @version TODO
+ */
 package fr.iutvalence.henrionjulien.chess;

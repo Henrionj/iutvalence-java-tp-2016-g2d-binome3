@@ -8,9 +8,16 @@ package fr.iutvalence.henrionjulien.chess;
  */
 public class Game
 {
+	/** TODO. */
+	/* TODO final? */
 	private Board board;
+	/** TODO. */
+	/* TODO final? */
 	private Player white;
+	/** TODO. */
+	/* TODO final? */
 	private Player black;
+	/** TODO. */
 	private int turn;
 
 	/**
@@ -26,7 +33,6 @@ public class Game
 	public void run()
 	{
 		// TODO Auto-generated method stub
-		
 	}
-	
+
 }

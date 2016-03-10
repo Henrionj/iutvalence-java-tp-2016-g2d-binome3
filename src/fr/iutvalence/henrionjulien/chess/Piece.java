@@ -8,9 +8,13 @@ package fr.iutvalence.henrionjulien.chess;
  */
 public abstract class Piece
 {
+	/** TODO. */
 	protected int defaultMove[][];
+	/** TODO. */
+	/* TODO I think this is a bad idea… but… why not in a first attempt. */
 	protected Board board;
-	
+
+	// TODO This constructor is "protected" not "public". */
 	/**
 	 * TODO.
 	 *
@@ -21,9 +25,11 @@ public abstract class Piece
 		this.board = board;
 	}
 
+	/* TODO Contracts (javadoc) are very important for abstract methods. */
 	/**
 	 * TODO.
-	 * @return
+	 *
+	 * @return TODO
 	 */
 	protected abstract int[][] createMove();
 
