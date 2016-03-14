@@ -17,8 +17,6 @@ public class Pawn extends Piece
 	public Pawn(Board board)
 	{
 		super(board);
-		// TODO Why don't you use the abstract class? _*/
-		defaultMove  = createMove();
 	}
 	
 	protected int[][] createMove()

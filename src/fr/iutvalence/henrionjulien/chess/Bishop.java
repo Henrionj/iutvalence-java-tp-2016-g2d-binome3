@@ -17,14 +17,13 @@ public class Bishop extends Piece
 	public Bishop(Board board)
 	{
 		super(board);
-		// TODO Why don't you use the abstract class? _*/
-		defaultMove  = createMove();
 	}
 
 	protected int[][] createMove()
 	{
-		// TODO Transform the next comment into javadoc.
-		//[8,8],[-8,-8],[-8,8],[8,-8] maximal move possible for the bishop.
+		/**
+		 * [8,8],[-8,-8],[-8,8],[8,-8] maximal move possible for the bishop.
+		 */
 		return new int[][]{{8,-8,-8,8},{8,-8,8,-8}};
 	}
 

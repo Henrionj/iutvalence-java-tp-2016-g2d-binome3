@@ -14,15 +14,15 @@ public abstract class Piece
 	/* TODO I think this is a bad idea… but… why not in a first attempt. */
 	protected Board board;
 
-	// TODO This constructor is "protected" not "public". */
 	/**
 	 * TODO.
 	 *
 	 * @param board TODO
      */
-	public Piece(Board board)
+	protected Piece(Board board)
 	{
 		this.board = board;
+		this.defaultMove = createMove();
 	}
 
 	/* TODO Contracts (javadoc) are very important for abstract methods. */
