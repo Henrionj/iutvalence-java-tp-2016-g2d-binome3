@@ -1,4 +1,6 @@
-package fr.iutvalence.henrionjulien.chess;
+package fr.iutvalence.henrionjulien.chess.piece;
+
+import fr.iutvalence.henrionjulien.chess.Board;
 
 /**
  * TODO.
@@ -9,7 +11,7 @@ package fr.iutvalence.henrionjulien.chess;
 public abstract class Piece
 {
 	/** TODO. */
-	protected int defaultMove[][];
+	protected int   defaultMove[][];
 	/** TODO. */
 	/* TODO I think this is a bad idea… but… why not in a first attempt. */
 	protected Board board;

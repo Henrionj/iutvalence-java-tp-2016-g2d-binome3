@@ -1,4 +1,6 @@
-package fr.iutvalence.henrionjulien.chess;
+package fr.iutvalence.henrionjulien.chess.piece;
+
+import fr.iutvalence.henrionjulien.chess.Board;
 
 /**
  * TODO.

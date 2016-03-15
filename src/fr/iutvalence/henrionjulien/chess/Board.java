@@ -1,5 +1,13 @@
 package fr.iutvalence.henrionjulien.chess;
 
+import fr.iutvalence.henrionjulien.chess.piece.Bishop;
+import fr.iutvalence.henrionjulien.chess.piece.King;
+import fr.iutvalence.henrionjulien.chess.piece.Knight;
+import fr.iutvalence.henrionjulien.chess.piece.Pawn;
+import fr.iutvalence.henrionjulien.chess.piece.Piece;
+import fr.iutvalence.henrionjulien.chess.piece.Queen;
+import fr.iutvalence.henrionjulien.chess.piece.Rook;
+
 /**
  * TODO.
  *
