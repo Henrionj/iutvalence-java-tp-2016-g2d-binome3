@@ -16,9 +16,9 @@ public class Knight extends Piece
 	 *
 	 * @param board TODO
      */
-	public Knight(Board board)
+	public Knight()
 	{
-		super(board);
+		super();
 	}
 
 	@Override

@@ -16,9 +16,9 @@ public class King extends Piece
 	 *
 	 * @param board TODO.
      */
-	public King(Board board)
+	public King()
 	{
-		super(board);
+		super();
 
 	}
 

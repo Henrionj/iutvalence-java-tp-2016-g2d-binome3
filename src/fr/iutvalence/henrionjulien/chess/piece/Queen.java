@@ -16,9 +16,9 @@ public class Queen extends Piece
 	 *
 	 * @param board TODO
      */
-	public Queen(Board board)
+	public Queen()
 	{
-		super(board);
+		super();
 
 	}
 

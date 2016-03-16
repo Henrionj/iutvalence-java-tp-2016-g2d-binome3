@@ -16,9 +16,9 @@ public class Bishop extends Piece
 	 *
 	 * @param board TODO.
      */
-	public Bishop(Board board)
+	public Bishop()
 	{
-		super(board);
+		super();
 	}
 
 	protected int[][] createMove()

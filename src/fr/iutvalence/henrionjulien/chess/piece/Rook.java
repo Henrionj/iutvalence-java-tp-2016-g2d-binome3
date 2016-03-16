@@ -16,9 +16,9 @@ public class Rook extends Piece
 	 *
 	 * @param board TODO
      */
-	public Rook(Board board)
+	public Rook()
 	{
-		super(board);
+		super();
 
 	}
 

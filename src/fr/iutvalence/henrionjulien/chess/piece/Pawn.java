@@ -16,9 +16,9 @@ public class Pawn extends Piece
 	 *
 	 * @param board TODO
      */
-	public Pawn(Board board)
+	public Pawn()
 	{
-		super(board);
+		super();
 	}
 	
 	protected int[][] createMove()

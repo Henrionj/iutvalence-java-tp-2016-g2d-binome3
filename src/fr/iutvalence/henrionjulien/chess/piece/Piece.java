@@ -13,17 +13,16 @@ public abstract class Piece
 	/** TODO. */
 	protected int   defaultMove[][];
 	/** TODO. */
-	/* TODO I think this is a bad idea… but… why not in a first attempt. */
-	protected Board board;
+
 
 	/**
 	 * TODO.
 	 *
 	 * @param board TODO
      */
-	protected Piece(Board board)
+	protected Piece()
 	{
-		this.board = board;
+		
 		this.defaultMove = createMove();
 	}
 

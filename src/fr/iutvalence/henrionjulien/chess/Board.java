@@ -68,18 +68,18 @@ public class Board
 	private Piece[] createPieceGame()
 	{
         Piece[] pieces = new Piece[NUMBER_OF_PIECES];
-		pieces[0] = new King(this);
-		pieces[1] = new Queen(this);
-        pieces[2] = new Knight(this);
-        pieces[3] = new Knight(this);
-        pieces[4] = new Rook(this);
-        pieces[5] = new Rook(this);
-        pieces[6] = new Bishop(this);
-        pieces[7] = new Bishop(this);
+		pieces[0] = new King();
+		pieces[1] = new Queen();
+        pieces[2] = new Knight();
+        pieces[3] = new Knight();
+        pieces[4] = new Rook();
+        pieces[5] = new Rook();
+        pieces[6] = new Bishop();
+        pieces[7] = new Bishop();
 
 		for (int i = 8; i < 16; i++)
 		{
-			pieces[i] = new Pawn(this);
+			pieces[i] = new Pawn();
 		}
 
 		return pieces;
