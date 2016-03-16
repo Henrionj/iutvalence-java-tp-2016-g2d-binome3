@@ -29,7 +29,7 @@ public class Board
 	public Board()
 	{
 		pieces = createPieceGame();
-
+		
 	}
 
 	/**
@@ -55,6 +55,7 @@ public class Board
 		for (int i = 0; i < 8; i++)
 		{
 			pieces[i][1] = new Pawn();
+			pieces[i][6] = new Pawn();
 		}
 		/**
 		 * pieces of the latter
@@ -68,10 +69,8 @@ public class Board
 		pieces[5][7] = new Bishop();
 		pieces[6][7] = new Knight();
 		pieces[7][7] = new Rook();
-		for (int i = 0; i < 8; i++)
-		{
-			pieces[i][6] = new Pawn();
-		}
+
+
 		
 		for(int i = 2;i <5;i++)
 		{

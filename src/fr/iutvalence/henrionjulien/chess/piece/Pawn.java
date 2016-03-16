@@ -10,6 +10,7 @@ import fr.iutvalence.henrionjulien.chess.Board;
  */
 public class Pawn extends Piece
 {
+	
 
 	/**
 	 * TODO.
@@ -21,6 +22,7 @@ public class Pawn extends Piece
 		super();
 	}
 	
+	@Override
 	protected int[][] createMove()
 	{
 		return new int[][]{{0},{1}};

@@ -1,6 +1,6 @@
 package fr.iutvalence.henrionjulien.chess.piece;
 /**
- * this class is use for simulate a blank case of the board.
+ * this class is use in order to  simulate a blank case of the board.
  * @author henrionj
  *
  */
@@ -10,10 +10,10 @@ public class Blank extends Piece {
 	{
 		super();
 	}
+	
 	@Override
 	protected int[][] createMove() {
-		// TODO Auto-generated method stub
-		return null;
+		return new int[0][0];
 	}
 
 }

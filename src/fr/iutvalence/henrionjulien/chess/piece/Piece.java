@@ -1,6 +1,5 @@
 package fr.iutvalence.henrionjulien.chess.piece;
 
-import fr.iutvalence.henrionjulien.chess.Board;
 
 /**
  * TODO.
@@ -11,8 +10,7 @@ import fr.iutvalence.henrionjulien.chess.Board;
 public abstract class Piece
 {
 	/** TODO. */
-	protected int   defaultMove[][];
-	/** TODO. */
+	private int defaultMove[][];
 
 
 	/**
@@ -25,6 +23,10 @@ public abstract class Piece
 		
 		this.defaultMove = createMove();
 	}
+	
+	public int[][] allowedMovement() {
+		return defaultMove;
+	}
 
 	/* TODO Contracts (javadoc) are very important for abstract methods. */
 	/**
@@ -33,5 +35,6 @@ public abstract class Piece
 	 * @return TODO
 	 */
 	protected abstract int[][] createMove();
+
 
 }
