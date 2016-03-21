@@ -33,6 +33,7 @@ public class Game
 	public void run()
 	{
 		// TODO Auto-generated method stub
+		System.out.println("game is already running");
 	}
 
 }

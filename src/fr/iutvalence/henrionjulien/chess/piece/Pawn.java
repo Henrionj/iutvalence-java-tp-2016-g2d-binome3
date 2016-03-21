@@ -17,9 +17,9 @@ public class Pawn extends Piece
 	 *
 	 * @param board TODO
      */
-	public Pawn()
+	public Pawn(Color color)
 	{
-		super();
+		super(color);
 	}
 	
 	@Override
@@ -27,5 +27,10 @@ public class Pawn extends Piece
 	{
 		return new int[][]{{0},{1}};
 	}
+	@Override
+	public String toString() {
+		return String.format(" [%s Pawn] ",super.toString());
+	}
+
 
 }

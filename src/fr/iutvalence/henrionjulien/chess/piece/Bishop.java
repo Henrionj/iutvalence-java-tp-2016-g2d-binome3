@@ -16,9 +16,9 @@ public class Bishop extends Piece
 	 *
 	 * @param board TODO.
      */
-	public Bishop()
+	public Bishop(Color color)
 	{
-		super();
+		super(color);
 	}
 
 	/**
@@ -29,5 +29,11 @@ public class Bishop extends Piece
 	{
 		return new int[][]{{8,-8,-8,8},{8,-8,8,-8}};
 	}
+	
+	@Override
+	public String toString() {
+		return String.format(" [%s Bishop] ",super.toString());
+	}
+
 
 }

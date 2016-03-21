@@ -6,9 +6,9 @@ package fr.iutvalence.henrionjulien.chess.piece;
  */
 public class Blank extends Piece {
 	
-	public Blank()
+	public Blank(Color color)
 	{
-		super();
+		super(color);
 	}
 	
 	@Override

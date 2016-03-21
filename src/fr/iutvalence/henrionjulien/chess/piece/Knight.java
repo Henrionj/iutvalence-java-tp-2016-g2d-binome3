@@ -16,9 +16,9 @@ public class Knight extends Piece
 	 *
 	 * @param board TODO
      */
-	public Knight()
+	public Knight(Color color)
 	{
-		super();
+		super(color);
 	}
 
 	@Override
@@ -31,4 +31,9 @@ public class Knight extends Piece
 		return new int[][]{{2,1,-1,-2,-2,-1,1,2},{-1,-2,-2,-1,1,2,2,1}};
 	}
 	
+	@Override
+	public String toString() {
+		return String.format(" [%s Knight] ",super.toString());
+	}
+
 }

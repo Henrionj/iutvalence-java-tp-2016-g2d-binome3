@@ -11,30 +11,39 @@ public abstract class Piece
 {
 	/** TODO. */
 	private int defaultMove[][];
-
+	private final Color color;
 
 	/**
 	 * TODO.
-	 *
+	 * @param color TODO
 	 * @param board TODO
      */
-	protected Piece()
+	protected Piece(Color color)
 	{
 		
 		this.defaultMove = createMove();
+		this.color = color;
 	}
 	
 	public int[][] allowedMovement() {
 		return defaultMove;
 	}
 
-	/* TODO Contracts (javadoc) are very important for abstract methods. */
 	/**
-	 * TODO.
-	 *
-	 * @return TODO
+	 * 
+	 *create the different moves for the pieces
+	 * @return an array of maximum moves possible from the pieces
 	 */
 	protected abstract int[][] createMove();
+	
+	public Color getColor()
+	{
+		return this.color;
+	}
+	
+	public String toString() {
+		return color.toString();
+	}
 
 
 }

@@ -16,9 +16,9 @@ public class King extends Piece
 	 *
 	 * @param board TODO.
      */
-	public King()
+	public King(Color color)
 	{
-		super();
+		super(color);
 
 	}
 
@@ -31,5 +31,11 @@ public class King extends Piece
 		 */
 		return new int[][]{{1,-1,-1,1,0,0,1,-1},{1,-1,1,-1,1,-1,0,0}};
 	}
+	
+	@Override
+	public String toString() {
+		return String.format(" [%s King] ",super.toString());
+	}
+
 	
 }

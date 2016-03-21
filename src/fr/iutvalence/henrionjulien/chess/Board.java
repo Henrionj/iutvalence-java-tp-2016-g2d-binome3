@@ -2,6 +2,7 @@ package fr.iutvalence.henrionjulien.chess;
 
 import fr.iutvalence.henrionjulien.chess.piece.Bishop;
 import fr.iutvalence.henrionjulien.chess.piece.Blank;
+import fr.iutvalence.henrionjulien.chess.piece.Color;
 import fr.iutvalence.henrionjulien.chess.piece.King;
 import fr.iutvalence.henrionjulien.chess.piece.Knight;
 import fr.iutvalence.henrionjulien.chess.piece.Pawn;
@@ -29,6 +30,7 @@ public class Board
 	public Board()
 	{
 		pieces = createPieceGame();
+		createBoard();
 		
 	}
 
@@ -44,42 +46,63 @@ public class Board
 		/**
 		 * pieces of one player
 		 */
-		pieces[0][0] = new Rook();
-		pieces[1][0] = new Knight();
-		pieces[2][0] = new Bishop();
-		pieces[3][0] = new Queen();
-		pieces[4][0] = new King();
-		pieces[5][0] = new Bishop();
-		pieces[6][0] = new Knight();
-		pieces[7][0] = new Rook();
+		pieces[0][0] = new Rook(Color.BLACK);
+		pieces[1][0] = new Knight(Color.BLACK);
+		pieces[2][0] = new Bishop(Color.BLACK);
+		pieces[3][0] = new Queen(Color.BLACK);
+		pieces[4][0] = new King(Color.BLACK);
+		pieces[5][0] = new Bishop(Color.BLACK);
+		pieces[6][0] = new Knight(Color.BLACK);
+		pieces[7][0] = new Rook(Color.BLACK);
 		for (int i = 0; i < 8; i++)
 		{
-			pieces[i][1] = new Pawn();
-			pieces[i][6] = new Pawn();
+			pieces[i][1] = new Pawn(Color.BLACK);
+			pieces[i][6] = new Pawn(Color.WHITE);
 		}
 		/**
 		 * pieces of the latter
 		 */
 		
-		pieces[0][7] = new Rook();
-		pieces[1][7] = new Knight();
-		pieces[2][7] = new Bishop();
-		pieces[3][7] = new Queen();
-		pieces[4][7] = new King();
-		pieces[5][7] = new Bishop();
-		pieces[6][7] = new Knight();
-		pieces[7][7] = new Rook();
+		pieces[0][7] = new Rook(Color.WHITE);
+		pieces[1][7] = new Knight(Color.WHITE);
+		pieces[2][7] = new Bishop(Color.WHITE);
+		pieces[3][7] = new Queen(Color.WHITE);
+		pieces[4][7] = new King(Color.WHITE);
+		pieces[5][7] = new Bishop(Color.WHITE);
+		pieces[6][7] = new Knight(Color.WHITE);
+		pieces[7][7] = new Rook(Color.WHITE);
 
 
 		
-		for(int i = 2;i <5;i++)
+		for(int i = 2;i <6;i++)
 		{
 			for(int j = 0;j<8;j++)
 			{
-				pieces[j][i] = new Blank();
+				pieces[j][i] = new Blank(Color.BLANK);
 			}
 		}
 
 		return pieces;
 	}
+	
+	private void createBoard()
+	{
+		for(int i = 0;i<HEIGHT;i++)
+		{
+			System.out.println();
+			for(int j = 0;j<WIDTH;j++)
+			{
+				System.out.print(pieces[i][j]);
+							}
+		}
+	
+	}
+
+
+
+
+
+
+
+
 }

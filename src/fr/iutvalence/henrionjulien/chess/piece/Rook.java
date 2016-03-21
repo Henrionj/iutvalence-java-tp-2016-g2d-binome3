@@ -16,9 +16,9 @@ public class Rook extends Piece
 	 *
 	 * @param board TODO
      */
-	public Rook()
+	public Rook(Color color)
 	{
-		super();
+		super(color);
 
 	}
 
@@ -30,6 +30,11 @@ public class Rook extends Piece
 		 * [0,8],[0,-8],[8,0],[-8,0] maximal move possible for the rook.
 		 */
 		return new int[][]{{0,0,8,-8},{8,-8,0,0}};
+	}
+	
+	@Override
+	public String toString() {
+		return String.format(" [%s Rook] ",super.toString());
 	}
 	
 }

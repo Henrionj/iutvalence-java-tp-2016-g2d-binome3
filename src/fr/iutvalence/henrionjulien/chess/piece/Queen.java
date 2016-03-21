@@ -16,9 +16,9 @@ public class Queen extends Piece
 	 *
 	 * @param board TODO
      */
-	public Queen()
+	public Queen(Color color)
 	{
-		super();
+		super(color);
 
 	}
 
@@ -30,5 +30,10 @@ public class Queen extends Piece
 		 */
 		return new int[][]{{8,-8,-8,8,0,0,8,-8},{8,-8,8,-8,8,-8,0,0}};
 	}
+	@Override
+	public String toString() {
+		return String.format(" [%s Queen] ",super.toString());
+	}
+
 	
 }
