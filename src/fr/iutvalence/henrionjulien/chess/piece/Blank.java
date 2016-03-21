@@ -16,4 +16,9 @@ public class Blank extends Piece {
 		return new int[0][0];
 	}
 
+	@Override
+	public String toString() {
+		return String.format("%s\t",super.toString());
+	}
+
 }

@@ -7,9 +7,9 @@ package fr.iutvalence.henrionjulien.chess.piece;
  */
 public enum Color {
 
-	BLACK("Black"),
-	WHITE("White"),
-	BLANK(" _ ");
+	BLACK("B "),
+	WHITE("W "),
+	BLANK("      _      ");
 	
 	private final String representation;
 	

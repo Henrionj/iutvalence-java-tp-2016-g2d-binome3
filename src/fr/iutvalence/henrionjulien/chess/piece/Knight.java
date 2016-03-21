@@ -33,7 +33,7 @@ public class Knight extends Piece
 	
 	@Override
 	public String toString() {
-		return String.format(" [%s Knight] ",super.toString());
+		return String.format("[%s Knight]\t",super.toString());
 	}
 
 }

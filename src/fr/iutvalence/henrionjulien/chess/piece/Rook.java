@@ -34,7 +34,7 @@ public class Rook extends Piece
 	
 	@Override
 	public String toString() {
-		return String.format(" [%s Rook] ",super.toString());
+		return String.format("[%s Rook]\t",super.toString());
 	}
 	
 }

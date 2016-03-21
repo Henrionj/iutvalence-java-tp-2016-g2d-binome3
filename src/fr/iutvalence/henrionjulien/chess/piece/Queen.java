@@ -32,7 +32,7 @@ public class Queen extends Piece
 	}
 	@Override
 	public String toString() {
-		return String.format(" [%s Queen] ",super.toString());
+		return String.format("[%s Queen]\t",super.toString());
 	}
 
 	

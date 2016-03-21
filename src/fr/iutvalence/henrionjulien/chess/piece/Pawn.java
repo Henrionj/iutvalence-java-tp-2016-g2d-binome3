@@ -29,7 +29,7 @@ public class Pawn extends Piece
 	}
 	@Override
 	public String toString() {
-		return String.format(" [%s Pawn] ",super.toString());
+		return String.format("[%s Pawn]\t",super.toString());
 	}
 
 

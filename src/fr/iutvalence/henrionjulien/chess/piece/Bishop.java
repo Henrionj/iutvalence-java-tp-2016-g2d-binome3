@@ -32,7 +32,7 @@ public class Bishop extends Piece
 	
 	@Override
 	public String toString() {
-		return String.format(" [%s Bishop] ",super.toString());
+		return String.format("[%s Bishop]\t",super.toString());
 	}
 
 
