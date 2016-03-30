@@ -2,6 +2,8 @@ package fr.iutvalence.henrionjulien.chess;
 
 import java.util.Scanner;
 
+import fr.iutvalence.henrionjulien.chess.piece.Color;
+
 /**
  * TODO.
  *
@@ -27,8 +29,8 @@ public class Game
      */
 	public Game()
 	{
-		this.black = new Player();
-		this.white = new Player();
+		this.black = new Player(Color.BLACK);
+		this.white = new Player(Color.WHITE);
 		this.board = new Board();
 	}
 
