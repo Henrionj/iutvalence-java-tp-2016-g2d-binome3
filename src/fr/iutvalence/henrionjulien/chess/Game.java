@@ -1,5 +1,7 @@
 package fr.iutvalence.henrionjulien.chess;
 
+import java.util.Scanner;
+
 /**
  * TODO.
  *
@@ -32,8 +34,20 @@ public class Game
 
 	public void run()
 	{
-		// TODO Auto-generated method stub
-		System.out.println("\n\n\n                            					******game is already running******");
+		int x
+		    ,y;
+		
+		/*System.out.println("\n\n\n                            					******game is already running******");
+		Scanner s = new Scanner(System.in);
+		System.out.println("donnez la position x:");
+		x = s.nextInt();
+		System.out.println("donnez la position y:");
+		y = s.nextInt();
+		s.close();*/
+		if(board.isEatable(board.getPieces()[0][0], board.getPieces()[7][0]))
+			System.out.println("\nmichou ça se mange");
+		else System.out.println("michou c'est pas comestible");
+		
 	}
 
 }
