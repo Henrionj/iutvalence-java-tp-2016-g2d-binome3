@@ -9,14 +9,19 @@ package fr.iutvalence.henrionjulien.chess.piece;
  */
 public abstract class Piece
 {
-	/** TODO. */
+	/** 
+	 * 
+	 * defaultMove give the higher movement who can do the piece
+	 * color is the color of the piece
+	 * 
+	 * 
+	 *  */
 	private int defaultMove[][];
 	private final Color color;
 
 	/**
-	 * TODO.
-	 * @param color TODO
-	 * @param board TODO
+	 * The constructor for the Piece
+	 * @param color the color of the piece
      */
 	protected Piece(Color color)
 	{

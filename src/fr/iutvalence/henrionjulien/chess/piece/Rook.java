@@ -3,8 +3,8 @@ package fr.iutvalence.henrionjulien.chess.piece;
 import fr.iutvalence.henrionjulien.chess.Board;
 
 /**
- * TODO.
- *
+ * the Rook of a traditional chess game.
+ * 
  * @author henrion & murer
  * @version TODO
  */
