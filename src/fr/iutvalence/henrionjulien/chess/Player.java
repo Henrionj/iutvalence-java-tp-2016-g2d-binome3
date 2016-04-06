@@ -10,21 +10,10 @@ import fr.iutvalence.henrionjulien.chess.piece.Piece;
  * @version TODO
  */
 public class Player {
-	private Color color;
-	public Player(Color c)
+
+	public Player()
 	{
-		this.color = c;
 	}
 	
-	/**
-	 * 
-	 * @param piece the current piece
-	 * @return true if the piece is posseded by the player, else false.
-	 */
-	public boolean posseded(Piece piece)
-	{
-		if(this.color == piece.getColor())
-			return true;
-		return false;
-	}
+
 }
