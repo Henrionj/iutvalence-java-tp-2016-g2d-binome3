@@ -27,8 +27,9 @@ public class Game
 	/** TODO. */
 	private Point currentPiece
 				 ,nextCase;
+	/** The current color's player of the turn */
 	private Color currentColor;
-	
+	/**A scanner to catch data from the keyboard.*/
 	Scanner s;
 	
 
@@ -71,7 +72,7 @@ public class Game
 			this.currentPiece = new Point(s.nextInt(),s.nextInt());
 			
 			/*
-			 *if the piece is posseded by the player, he can select her future move.
+			 *verify if the piece is posseded by the player, he can select her future move.
 			 * 
 			 */
 			if(isPosseded(this.board.getPieces()[currentPiece.getY()][currentPiece.getX()]))
@@ -79,8 +80,22 @@ public class Game
 				System.out.println(this.board.getPieces()[currentPiece.getY()][currentPiece.getX()].toString());
 				System.out.println("donnez la position x,puis la position y du déplacement:");
 				this.nextCase = new Point(s.nextInt(),s.nextInt());
-				move(currentPiece,nextCase);
-				turn++;	
+				/*
+				 * check if the piece of the next move is "eatable" (different color or blank)
+				 * and put her in the cemetery
+				 */
+				if(this.board.isEatable(board.getPieces()[nextCase.getY()][nextCase.getX()], 
+						board.getPieces()[nextCase.getY()][nextCase.getX()]))
+				{
+					board.eat(board.getPieces()[nextCase.getY()][nextCase.getX()]);
+					move(currentPiece,nextCase);
+					turn++;	
+				}
+				else
+				{
+					System.out.println("Mouvement non autorisé, la case contient une autre pièce de même couleur.");
+				}
+				
 			}
 			else
 			{
@@ -107,6 +122,7 @@ public class Game
 	
 	public void exit()
 	{
+		System.out.println("******game is exit******");
 		s.close();	
 	}
 
