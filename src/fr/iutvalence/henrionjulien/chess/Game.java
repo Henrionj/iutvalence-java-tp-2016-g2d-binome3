@@ -3,6 +3,7 @@ package fr.iutvalence.henrionjulien.chess;
 import java.util.Scanner;
 
 import fr.iutvalence.henrionjulien.chess.piece.Color;
+import fr.iutvalence.henrionjulien.chess.piece.Piece;
 
 /**
  * TODO.
@@ -13,16 +14,20 @@ import fr.iutvalence.henrionjulien.chess.piece.Color;
 public class Game
 {
 	/** TODO. */
-	/* TODO final? */
-	private Board board;
+
+	private final Board board;
 	/** TODO. */
-	/* TODO final? */
-	private Player white;
+
+	private final  Player white;
 	/** TODO. */
-	/* TODO final? */
-	private Player black;
+
+	private  final Player black;
 	/** TODO. */
 	private int turn;
+	/** TODO. */
+	private Point currentPiece
+				 ,nextCase;
+	
 
 	/**
 	 * TODO.
@@ -35,20 +40,20 @@ public class Game
 	}
 
 	public void run()
-	{
-		int x
-		    ,y;
-		
-		/*System.out.println("\n\n\n                            					******game is already running******");
+	{	
+		System.out.println("\n\n\n                            					******game is already running******");
 		Scanner s = new Scanner(System.in);
-		System.out.println("donnez la position x:");
-		x = s.nextInt();
-		System.out.println("donnez la position y:");
-		y = s.nextInt();
-		s.close();*/
-		if(board.isEatable(board.getPieces()[0][0], board.getPieces()[7][0]))
-			System.out.println("\nmichou ça se mange");
-		else System.out.println("michou c'est pas comestible");
+		System.out.println("donnez la position x,puis la position y de la piece:");
+		currentPiece = new Point(s.nextInt(),s.nextInt());
+		System.out.println(board.getPieces()[currentPiece.getY()][currentPiece.getX()].toString());
+		System.out.println("donnez la position x,puis la position y du déplacement:");
+		s.close();
+		turn++;
+	}
+	
+	public void move(Piece currentPiece,Piece nextCase, int x, int y)
+	{
+	
 		
 	}
 
