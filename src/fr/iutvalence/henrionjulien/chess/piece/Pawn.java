@@ -11,7 +11,7 @@ import fr.iutvalence.henrionjulien.chess.Board;
 public class Pawn extends Piece
 {
 	
-
+	private boolean firstMove;
 	/**
 	 * TODO.
 	 *
@@ -20,6 +20,7 @@ public class Pawn extends Piece
 	public Pawn(Color color)
 	{
 		super(color);
+		this.firstMove = true;
 	}
 	
 	@Override
@@ -31,6 +32,16 @@ public class Pawn extends Piece
 	public String toString() {
 		return String.format("[%s Pawn]\t",super.toString());
 	}
+	
+	/**
+	 * 
+	 * @return true if this is the first move for the piece, false if not.
+	 */
+	public boolean isFirstMove()
+	{
+		return firstMove;
+	}
+	
 
 
 }
