@@ -40,7 +40,6 @@ public class Board
 	public Board()
 	{
 		pieces = createPieceGame();
-		createBoard();
 		blackCemetery = new Piece[PIECE_NUMBER];
 		whiteCemetery = new Piece[PIECE_NUMBER];
 		whitePieceKilled = 0;
@@ -99,11 +98,16 @@ public class Board
 		return pieces;
 	}
 	
-	private void createBoard()
+	public void display()
 	{
-		for(int i = 0;i<HEIGHT;i++)
+		for(int j = 0;j<WIDTH;j++)
 		{
+			System.out.print(String.format("\t[%s ]\t",j));
+						}
+		for(int i = 0;i<HEIGHT;i++)
+		{	
 			System.out.println();
+			System.out.print(String.format("[%s ]\t",i));
 			for(int j = 0;j<WIDTH;j++)
 			{
 				System.out.print(pieces[i][j]);
