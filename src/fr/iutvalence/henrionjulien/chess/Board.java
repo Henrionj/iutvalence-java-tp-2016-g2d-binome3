@@ -132,10 +132,14 @@ public class Board
 		return false;		
 	}
 
-	public Piece[][] getPieces() {
-		return pieces;
+	public Piece getPiece(Point piece) {
+		return pieces[piece.getY()][piece.getX()];
 	}
 	
+	public Piece[][] getPieces()
+	{
+		return pieces;
+	}
 	
 	public boolean isEatable(Piece currentPiece, Piece choosePiece)
 	{

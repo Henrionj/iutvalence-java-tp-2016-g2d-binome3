@@ -75,19 +75,19 @@ public class Game
 			 *verify if the piece is posseded by the player, he can select her future move.
 			 * 
 			 */
-			if(isPosseded(this.board.getPieces()[currentPiece.getY()][currentPiece.getX()]))
+			if(isPosseded(this.board.getPiece(currentPiece)))
 			{
-				System.out.println(this.board.getPieces()[currentPiece.getY()][currentPiece.getX()].toString());
+				System.out.println(this.board.getPiece(currentPiece).toString());
 				System.out.println("donnez la position x,puis la position y du déplacement:");
 				this.nextCase = new Point(s.nextInt(),s.nextInt());
 				/*
 				 * check if the piece of the next move is "eatable" (different color or blank)
-				 * and put her in the cemetery
+				 * and put her in the cemeterY
 				 */
-				if(this.board.isEatable(board.getPieces()[nextCase.getY()][nextCase.getX()], 
-						board.getPieces()[nextCase.getY()][nextCase.getX()]))
+				if(this.board.isEatable(board.getPiece(nextCase), 
+						board.getPiece(nextCase)))
 				{
-					board.eat(board.getPieces()[nextCase.getY()][nextCase.getX()]);
+					board.eat(board.getPiece(nextCase));
 					move(currentPiece,nextCase);
 					turn++;	
 				}
@@ -108,7 +108,7 @@ public class Game
 	
 	public void move(Point currentPiece, Point nextCase)
 	{
-		Piece movedPiece = this.board.getPieces()[nextCase.getY()][nextCase.getX()] ;
+		Piece movedPiece = this.board.getPiece(nextCase) ;
 		board.getPieces()[nextCase.getY()][nextCase.getX()] = board.getPieces()[currentPiece.getY()][currentPiece.getX()];
 		board.getPieces()[currentPiece.getY()][currentPiece.getX()] = movedPiece;	
 	}
