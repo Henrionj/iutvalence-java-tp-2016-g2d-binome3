@@ -1,6 +1,7 @@
 package fr.iutvalence.henrionjulien.chess.piece;
 
-import fr.iutvalence.henrionjulien.chess.Board;
+import fr.iutvalence.henrionjulien.chess.Point;
+
 
 /**
  * the King of a traditional chess game.
@@ -35,6 +36,14 @@ public class King extends Piece
 	@Override
 	public String toString() {
 		return String.format("[%s King]\t",super.toString());
+	}
+
+	@Override
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece) {
+		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX())
+			return true;
+		
+		return false;
 	}
 
 	

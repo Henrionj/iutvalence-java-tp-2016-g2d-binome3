@@ -163,6 +163,33 @@ public class Board
 		}
 	}
 	
+	/**
+	 * TODO
+	 */
+	public void invertBoard()
+	{
+		Piece p[][] = new Piece[this.WIDTH][this.HEIGHT];
+		int i = 7,
+			j = 0,
+			y = 7,
+			x = 0;
+		
+		while(j<=7)
+		{
+			while(i>=0)
+			{
+				p[j][i] = this.pieces[y][x];
+				i--;
+				x++;
+			}
+			j++;
+			y--;
+			x = 0;
+			i = 7;
+		}
+		this.pieces = p;
+	}
+	
 
 
 }

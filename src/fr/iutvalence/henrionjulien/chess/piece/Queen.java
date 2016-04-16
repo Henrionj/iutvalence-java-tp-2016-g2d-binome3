@@ -1,6 +1,7 @@
 package fr.iutvalence.henrionjulien.chess.piece;
 
-import fr.iutvalence.henrionjulien.chess.Board;
+import fr.iutvalence.henrionjulien.chess.Point;
+
 
 /**
  * the Queen of a traditional chess game.
@@ -33,6 +34,12 @@ public class Queen extends Piece
 	@Override
 	public String toString() {
 		return String.format("[%s Queen]\t",super.toString());
+	}
+
+	@Override
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	

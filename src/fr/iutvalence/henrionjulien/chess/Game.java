@@ -2,6 +2,7 @@ package fr.iutvalence.henrionjulien.chess;
 
 import java.util.Scanner;
 
+import fr.iutvalence.henrionjulien.chess.piece.Blank;
 import fr.iutvalence.henrionjulien.chess.piece.Color;
 import fr.iutvalence.henrionjulien.chess.piece.Piece;
 
@@ -82,9 +83,9 @@ public class Game
 				this.nextCase = new Point(s.nextInt(),s.nextInt());
 				/*
 				 * check if the piece of the next move is "eatable" (different color or blank)
-				 * and put her in the cemeterY
+				 * and put her in the cemetery
 				 */
-				if(this.board.isEatable(board.getPiece(nextCase), 
+				if(this.board.isEatable(board.getPiece(currentPiece), 
 						board.getPiece(nextCase)))
 				{
 					board.eat(board.getPiece(nextCase));
@@ -101,16 +102,16 @@ public class Game
 			{
 				System.out.println("Vous ne possédez pas cette piece!");
 			}
-		
+			
+			board.invertBoard();
 		}
 		
 	}
 	
 	public void move(Point currentPiece, Point nextCase)
 	{
-		Piece movedPiece = this.board.getPiece(nextCase) ;
 		board.getPieces()[nextCase.getY()][nextCase.getX()] = board.getPieces()[currentPiece.getY()][currentPiece.getX()];
-		board.getPieces()[currentPiece.getY()][currentPiece.getX()] = movedPiece;	
+		board.getPieces()[currentPiece.getY()][currentPiece.getX()] = new Blank(Color.BLANK);	
 	}
 	
 	public boolean isPosseded(Piece piece)

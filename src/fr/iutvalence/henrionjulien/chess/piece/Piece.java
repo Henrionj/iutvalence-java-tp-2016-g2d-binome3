@@ -1,5 +1,7 @@
 package fr.iutvalence.henrionjulien.chess.piece;
 
+import fr.iutvalence.henrionjulien.chess.Point;
+
 
 /**
  * TODO.
@@ -49,6 +51,7 @@ public abstract class Piece
 	public String toString() {
 		return color.toString();
 	}
-
+	
+	public abstract boolean moveIsPossible(Point currentPiece, Point nextPiece);
 
 }

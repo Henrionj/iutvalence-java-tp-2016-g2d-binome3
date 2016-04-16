@@ -1,6 +1,7 @@
 package fr.iutvalence.henrionjulien.chess.piece;
 
-import fr.iutvalence.henrionjulien.chess.Board;
+import fr.iutvalence.henrionjulien.chess.Point;
+
 
 /**
  * the Pawn of a traditional chess game.
@@ -40,6 +41,26 @@ public class Pawn extends Piece
 	public boolean isFirstMove()
 	{
 		return firstMove;
+	}
+
+	@Override
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece) 
+	{
+		if(currentPiece.getY() == nextPiece.getY()+2 && isFirstMove())
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX())
+			return true;
+		return false;
+	}
+	
+	public boolean eat(Point currentPiece, Point nextPiece,boolean isEatable) 
+	{
+		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX()+1 && isEatable)
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()-1 && currentPiece.getX() == nextPiece.getX()+1 && isEatable)
+			return true;
+			
+		return false;
 	}
 	
 

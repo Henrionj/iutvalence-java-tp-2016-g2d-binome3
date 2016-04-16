@@ -1,6 +1,7 @@
 package fr.iutvalence.henrionjulien.chess.piece;
 
-import fr.iutvalence.henrionjulien.chess.Board;
+import fr.iutvalence.henrionjulien.chess.Point;
+
 
 /**
  * the Rook of a traditional chess game.
@@ -35,6 +36,13 @@ public class Rook extends Piece
 	@Override
 	public String toString() {
 		return String.format("[%s Rook]\t",super.toString());
+	}
+
+	
+	
+	@Override
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece) {
+		return false;
 	}
 	
 }
