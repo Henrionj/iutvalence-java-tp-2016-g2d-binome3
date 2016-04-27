@@ -189,6 +189,7 @@ public class Board
 		}
 		this.pieces = p;
 	}
+
 	
 
 

@@ -28,8 +28,10 @@ public class Knight extends Piece
 	}
 
 	@Override
-	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) {
-		
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][])  throws NoMoveException 
+	{
+		if(currentPiece.getY() == nextPiece.getY() && currentPiece.getX() == nextPiece.getX())
+			throw new NoMoveException();	
 		if(currentPiece.getY() == nextPiece.getY()+2 && currentPiece.getX() == nextPiece.getX()+1)
 			return true;
 		if(currentPiece.getY() == nextPiece.getY()+2 && currentPiece.getX() == nextPiece.getX()-1)

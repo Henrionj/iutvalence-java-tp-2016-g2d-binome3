@@ -30,7 +30,10 @@ public class King extends Piece
 	}
 
 	@Override
-	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) {
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) throws NoMoveException 
+	{
+		if(currentPiece.getY() == nextPiece.getY() && currentPiece.getX() == nextPiece.getX())
+			throw new NoMoveException();
 		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX())
 			return true;
 		if(currentPiece.getY() == nextPiece.getY()-1 && currentPiece.getX() == nextPiece.getX())

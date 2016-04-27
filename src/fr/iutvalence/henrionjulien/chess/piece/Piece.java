@@ -34,6 +34,6 @@ public abstract class Piece
 		return color.toString();
 	}
 	
-	public abstract boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]);
+	public abstract boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) throws  NoMoveException;
 
 }

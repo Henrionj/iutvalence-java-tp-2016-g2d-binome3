@@ -39,24 +39,25 @@ public class Pawn extends Piece
 	}
 
 	@Override
-	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) 
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) throws NoMoveException 
 	{
-		if(currentPiece.getY() == nextPiece.getY()+2 && isFirstMove())
+		if(currentPiece.getY() == nextPiece.getY() && currentPiece.getX() == nextPiece.getX())
+			throw new NoMoveException();
+		if(currentPiece.getY() == nextPiece.getY()+2 && isFirstMove() 
+				&& p[nextPiece.getY()][nextPiece.getX()].getColor() == Color.BLANK)
 			return true;
-		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX())
+		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX() 
+				&& p[nextPiece.getY()][nextPiece.getX()].getColor() == Color.BLANK)
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX()+1 
+				&& p[nextPiece.getY()][nextPiece.getX()].getColor() != Color.BLANK)
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()-1 && currentPiece.getX() == nextPiece.getX()+1 
+				&& p[nextPiece.getY()][nextPiece.getX()].getColor() != Color.BLANK)
 			return true;
 		return false;
 	}
 	
-	public boolean eat(Point currentPiece, Point nextPiece,boolean isEatable) 
-	{
-		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX()+1 && isEatable)
-			return true;
-		if(currentPiece.getY() == nextPiece.getY()-1 && currentPiece.getX() == nextPiece.getX()+1 && isEatable)
-			return true;
-			
-		return false;
-	}
 	
 
 

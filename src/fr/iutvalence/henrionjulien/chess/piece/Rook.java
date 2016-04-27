@@ -22,7 +22,7 @@ public class Rook extends Piece
 		super(color);
 
 	}
-
+								
 	
 	@Override
 	public String toString() {
@@ -32,8 +32,65 @@ public class Rook extends Piece
 	
 	
 	@Override
-	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) {
-		return false;
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) throws NoMoveException 
+	{
+		if(currentPiece.getY() == nextPiece.getY() && currentPiece.getX() == nextPiece.getX())
+			throw new NoMoveException();
+		int i = 1;
+		if(currentPiece.getY() == nextPiece.getY())
+		{
+			if(currentPiece.getX() < nextPiece.getX())
+			{
+				while(currentPiece.getX()+i != nextPiece.getX())
+				{
+					if(p[currentPiece.getY()][currentPiece.getX()+i].getColor() != Color.BLANK)
+						return false;
+					i++;
+				}
+				return true;
+			}
+			else
+			{
+				i = 1;
+				while(currentPiece.getX()-i != nextPiece.getX())
+				{
+					
+					if(p[currentPiece.getY()][currentPiece.getX()-i].getColor() != Color.BLANK)
+						return false;
+					i++;
+				}
+				return true;
+				
+			}
+		}
+		if( currentPiece.getX() == nextPiece.getX())
+		{
+			if(currentPiece.getY() < nextPiece.getY())				
+			{
+				i = 1;
+				while(currentPiece.getY()+i != nextPiece.getY())
+				{
+					if(p[currentPiece.getY()+i][currentPiece.getX()].getColor() != Color.BLANK)
+						return false;
+					i++;
+				}
+				return true;
+			}
+			else
+			{
+				i = 1;
+				while(currentPiece.getY()-i != nextPiece.getY())
+				{				
+					if(p[currentPiece.getY()-i][currentPiece.getX()].getColor() != Color.BLANK)
+						return false;
+					i++;
+				}
+				return true;
+				
+			}
+		}
+		
+			return false;
 	}
 	
 }

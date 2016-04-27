@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import fr.iutvalence.henrionjulien.chess.piece.Blank;
 import fr.iutvalence.henrionjulien.chess.piece.Color;
+import fr.iutvalence.henrionjulien.chess.piece.King;
+import fr.iutvalence.henrionjulien.chess.piece.NoMoveException;
 import fr.iutvalence.henrionjulien.chess.piece.Piece;
 
 /**
@@ -31,6 +33,7 @@ public class Game
 	/** The current color's player of the turn */
 	private Color currentColor;
 	/**A scanner to catch data from the keyboard.*/
+	private boolean KingIsDead;
 	Scanner s;
 	
 
@@ -42,6 +45,7 @@ public class Game
 		this.black = new Player();
 		this.white = new Player();
 		this.board = new Board();
+		this.KingIsDead = false;
 		this.currentColor = Color.WHITE;
 		s = new Scanner(System.in);
 	}
@@ -49,7 +53,7 @@ public class Game
 	public void run()
 	{	
 		System.out.println("******game is already running******");
-		while(turn!=5)
+		while(this.KingIsDead == false)
 		{
 			System.out.println("turn "+turn);
 			this.board.display();
@@ -85,26 +89,46 @@ public class Game
 				 * check if the piece of the next move is "eatable" (different color or blank)
 				 * and put her in the cemetery
 				 */
-				if(this.board.isEatable(board.getPiece(currentPiece), 
-						board.getPiece(nextCase)))
-				{
-					board.eat(board.getPiece(nextCase));
-					move(currentPiece,nextCase);
-					turn++;	
-				}
-				else
-				{
-					System.out.println("Mouvement non autorisé, la case contient une autre pièce de même couleur.");
+				try {
+					if(this.board.getPiece(currentPiece).moveIsPossible(currentPiece, nextCase, board.getPieces()))
+						{
+							if(this.board.isEatable(board.getPiece(currentPiece), 
+									board.getPiece(nextCase)))
+							{
+								if(board.getPiece(nextCase).getClass() == new King(Color.BLACK).getClass())
+									KingIsDead = true;
+								board.eat(board.getPiece(nextCase));
+								move(currentPiece,nextCase);
+								turn++;	
+								board.invertBoard();
+							}
+							else
+							{
+								System.out.println("Mouvement non autorisé, la case contient une autre pièce de même couleur.");
+							}
+							
+						}
+					else
+					{
+						System.out.println("mouvement non autorisé, la pièce ne peut faire un tel mouvement.");
+					}
+				} catch (NoMoveException e) {
+					System.out.println("Vous ne pouvez pas déplacer la pièce sur elle même!");
 				}
 				
 			}
+			
 			else
 			{
 				System.out.println("Vous ne possédez pas cette piece!");
 			}
-			
-			board.invertBoard();
 		}
+		if(this.currentColor == Color.WHITE)
+			System.out.println("Les Blancs gagnent");
+		if(this.currentColor == Color.BLACK)
+			System.out.println("Les Noirs gagnent");
+		
+		this.exit();
 		
 	}
 	
@@ -123,7 +147,7 @@ public class Game
 	
 	public void exit()
 	{
-		System.out.println("******game is exit******");
+		System.out.println("******exit******");
 		s.close();	
 	}
 
