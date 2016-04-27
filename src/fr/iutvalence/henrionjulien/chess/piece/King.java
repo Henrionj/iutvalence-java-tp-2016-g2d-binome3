@@ -23,15 +23,6 @@ public class King extends Piece
 
 	}
 
-	@Override
-	protected int[][] createMove()
-	{
-		
-		/**
-		 * [1,1],[-1,-1],[-1,1],[1,-1],[0,1],[0,-1],[1,0],[-1,0] maximal move possible for the king.
-		 */
-		return new int[][]{{1,-1,-1,1,0,0,1,-1},{1,-1,1,-1,1,-1,0,0}};
-	}
 	
 	@Override
 	public String toString() {

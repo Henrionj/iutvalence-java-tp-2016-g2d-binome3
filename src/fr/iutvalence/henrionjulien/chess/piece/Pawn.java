@@ -25,11 +25,6 @@ public class Pawn extends Piece
 	}
 	
 	@Override
-	protected int[][] createMove()
-	{
-		return new int[][]{{0},{1}};
-	}
-	@Override
 	public String toString() {
 		return String.format("[%s Pawn]\t",super.toString());
 	}

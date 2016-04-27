@@ -21,15 +21,6 @@ public class Knight extends Piece
 		super(color);
 	}
 
-	@Override
-	protected int[][] createMove()
-	{
-		
-		/**
-		 * [2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2],[1,2],[2,1] maximal move possible for the knight.
-		 */
-		return new int[][]{{2,1,-1,-2,-2,-1,1,2},{-1,-2,-2,-1,1,2,2,1}};
-	}
 	
 	@Override
 	public String toString() {

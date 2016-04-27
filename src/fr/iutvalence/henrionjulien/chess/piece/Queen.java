@@ -24,14 +24,6 @@ public class Queen extends Piece
 	}
 
 	@Override
-	protected int[][] createMove()
-	{
-		/**
-		 * [8,8],[-8,-8],[-8,8],[8,-8],[0,8],[0,-8],[8,0],[-8,0] maximal move possible for the queen.
-		 */
-		return new int[][]{{8,-8,-8,8,0,0,8,-8},{8,-8,8,-8,8,-8,0,0}};
-	}
-	@Override
 	public String toString() {
 		return String.format("[%s Queen]\t",super.toString());
 	}

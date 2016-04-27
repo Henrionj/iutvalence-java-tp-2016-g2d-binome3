@@ -22,14 +22,6 @@ public class Bishop extends Piece
 		super(color);
 	}
 
-	/**
-	 * [8,8],[-8,-8],[-8,8],[8,-8] maximal move possible for the bishop.
-	 */
-	@Override
-	protected int[][] createMove()
-	{
-		return new int[][]{{8,-8,-8,8},{8,-8,8,-8}};
-	}
 	
 	@Override
 	public String toString() {
