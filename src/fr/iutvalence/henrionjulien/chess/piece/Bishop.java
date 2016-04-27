@@ -7,13 +7,14 @@ import fr.iutvalence.henrionjulien.chess.Point;
  * the Bishop of a traditional chess game.
  *
  * @author henrion & murer
- * @version TODO
+ * @version 1
  */
 public class Bishop extends Piece
 {
 
 	/**
-	 * TODO.
+	 * The constructor for the Bishop.
+	 * @param color the color of the Bishop.
 	 *
 	 *
      */

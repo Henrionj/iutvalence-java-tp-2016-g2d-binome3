@@ -21,10 +21,7 @@ public class Game
 	private final Board board;
 	/** TODO. */
 
-	private final  Player white;
-	/** TODO. */
 
-	private  final Player black;
 	/** TODO. */
 	private int turn = 1;
 	/** TODO. */
@@ -42,8 +39,6 @@ public class Game
      */
 	public Game()
 	{
-		this.black = new Player();
-		this.white = new Player();
 		this.board = new Board();
 		this.KingIsDead = false;
 		this.currentColor = Color.WHITE;

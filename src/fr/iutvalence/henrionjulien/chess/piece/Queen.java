@@ -7,13 +7,14 @@ import fr.iutvalence.henrionjulien.chess.Point;
  * the Queen of a traditional chess game.
  *
  * @author henrion & murer
- * @version TODO
+ * @version 1
  */
 public class Queen extends Piece
 {
 
 	/**
-	 * TODO.
+	 * The constructor for the Queen
+	 * @param color the color of the Queen.
 	 *
 	 * 
      */

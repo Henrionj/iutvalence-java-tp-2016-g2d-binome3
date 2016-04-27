@@ -4,14 +4,17 @@ import fr.iutvalence.henrionjulien.chess.Point;
 
 
 /**
- * TODO.
+ *  A piece on the chessboard.Can't be created except his children.
  *
  * @author henrion & murer
- * @version TODO
+ * @version 1
  */
 public abstract class Piece
 {
-
+	/**
+	 *  the color of the piece.
+	 * 
+	 */
 	private final Color color;
 
 	/**
@@ -24,7 +27,11 @@ public abstract class Piece
 		this.color = color;
 	}
 	
-	
+	/**
+	 * 
+	 * 
+	 * @return the color of the piece.
+	 */
 	public Color getColor()
 	{
 		return this.color;
@@ -34,6 +41,14 @@ public abstract class Piece
 		return color.toString();
 	}
 	
+	/**
+	 * 
+	 * @param currentPiece
+	 * @param nextPiece
+	 * @param p an array of pieces.
+	 * @return <tt>true</tt> if the move is possible, <tt>false</tt> if not.
+	 * @throws NoMoveException
+	 */
 	public abstract boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) throws  NoMoveException;
 
 }

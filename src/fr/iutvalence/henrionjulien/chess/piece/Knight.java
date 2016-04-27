@@ -7,13 +7,14 @@ import fr.iutvalence.henrionjulien.chess.Point;
  * the Knight of a traditional chess game.
  *
  * @author henrion & murer
- * @version TODO
+ * @version 1
  */
 public class Knight extends Piece
 {
 
 	/**
-	 * TODO.
+	 * The constructor for the Knight.
+	 * @param color the color of the Knight.
 	 *
      */
 	public Knight(Color color)

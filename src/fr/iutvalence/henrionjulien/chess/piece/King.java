@@ -7,13 +7,14 @@ import fr.iutvalence.henrionjulien.chess.Point;
  * the King of a traditional chess game.
  *
  * @author henrion & murer
- * @version TODO
+ * @version 1
  */
 public class King extends Piece
 {
 
 	/**
-	 * TODO.
+	 * The constructor for the King.
+	 * @param color the color of the King.
 	 *
 	 * 
      */

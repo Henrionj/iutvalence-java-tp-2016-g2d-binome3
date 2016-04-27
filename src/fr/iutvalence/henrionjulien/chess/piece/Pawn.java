@@ -7,16 +7,17 @@ import fr.iutvalence.henrionjulien.chess.Point;
  * the Pawn of a traditional chess game.
  *
  * @author henrion & murer
- * @version TODO
+ * @version 1
  */
 public class Pawn extends Piece
 {
-	
+	/**
+	 * a boolean used to know if the first move have already been done.
+	 */
 	private boolean firstMove;
 	/**
-	 * TODO.
-	 *
-	 * @param board TODO
+	 * The constructor for the Pawn.
+	 * @param color the color of the Pawn.
      */
 	public Pawn(Color color)
 	{
@@ -31,7 +32,7 @@ public class Pawn extends Piece
 	
 	/**
 	 * 
-	 * @return true if this is the first move for the piece, false if not.
+	 * @return <tt>true</tt> if this is the first move for the piece, <tt>false</tt> if not.
 	 */
 	public boolean isFirstMove()
 	{

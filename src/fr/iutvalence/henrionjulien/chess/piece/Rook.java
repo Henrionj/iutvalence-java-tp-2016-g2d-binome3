@@ -7,15 +7,16 @@ import fr.iutvalence.henrionjulien.chess.Point;
  * the Rook of a traditional chess game.
  * 
  * @author henrion & murer
- * @version TODO
+ * @version 1
  */
 public class Rook extends Piece
 {
 
 	/**
-	 * TODO.
-	 *
-	 * @param board TODO
+	 * The constructor for the Rook.
+	 * @param color the color of the Rook.
+	 * 
+	 * 
      */
 	public Rook(Color color)
 	{

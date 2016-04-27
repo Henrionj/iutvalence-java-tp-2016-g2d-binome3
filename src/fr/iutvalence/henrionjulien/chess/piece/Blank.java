@@ -8,7 +8,10 @@ import fr.iutvalence.henrionjulien.chess.Point;
  *
  */
 public class Blank extends Piece {
-	
+	/**
+	 * The constructor for a Blank Case.
+	 * @param color the color of the Blank Case.
+	 */
 	public Blank(Color color)
 	{
 		super(color);
@@ -21,7 +24,7 @@ public class Blank extends Piece {
 
 	@Override
 	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) {
-		//there is no possible move for the Blank Piece.
+		//there are no possible move for the Blank Piece.
 		return false;
 	}
 

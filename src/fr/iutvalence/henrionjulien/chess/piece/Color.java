@@ -10,9 +10,15 @@ public enum Color {
 	BLACK("B "),
 	WHITE("W "),
 	BLANK("      _      ");
-	
+	/**
+	 * A representation of the color in String object.
+	 */
 	private final String representation;
 	
+	/**
+	 * The color assign for the piece.
+	 * @param repr the representation of the color in String type.
+	 */
 	Color(String repr) {
 		this.representation = repr;
 	}
