@@ -41,7 +41,7 @@ public class Rook extends Piece
 	
 	
 	@Override
-	public boolean moveIsPossible(Point currentPiece, Point nextPiece) {
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) {
 		return false;
 	}
 	

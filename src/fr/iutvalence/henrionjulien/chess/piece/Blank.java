@@ -25,7 +25,7 @@ public class Blank extends Piece {
 	}
 
 	@Override
-	public boolean moveIsPossible(Point currentPiece, Point nextPiece) {
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) {
 		//there is no possible move for the Blank Piece.
 		return false;
 	}

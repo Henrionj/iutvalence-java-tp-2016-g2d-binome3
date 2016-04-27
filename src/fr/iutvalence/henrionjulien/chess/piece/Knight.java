@@ -15,7 +15,6 @@ public class Knight extends Piece
 	/**
 	 * TODO.
 	 *
-	 * @param board TODO
      */
 	public Knight(Color color)
 	{
@@ -38,8 +37,25 @@ public class Knight extends Piece
 	}
 
 	@Override
-	public boolean moveIsPossible(Point currentPiece, Point nextPiece) {
-		// TODO Auto-generated method stub
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) {
+		
+		if(currentPiece.getY() == nextPiece.getY()+2 && currentPiece.getX() == nextPiece.getX()+1)
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()+2 && currentPiece.getX() == nextPiece.getX()-1)
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX()+2)
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()-1 && currentPiece.getX() == nextPiece.getX()+2)
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX()-2)
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()-1 && currentPiece.getX() == nextPiece.getX()-2)
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()-2 && currentPiece.getX() == nextPiece.getX()+1)
+			return true;
+		if(currentPiece.getY() == nextPiece.getY()-2 && currentPiece.getX() == nextPiece.getX()-1)
+			return true;
+		
 		return false;
 	}
 

@@ -15,7 +15,7 @@ public class Bishop extends Piece
 	/**
 	 * TODO.
 	 *
-	 * @param board TODO.
+	 *
      */
 	public Bishop(Color color)
 	{
@@ -37,7 +37,7 @@ public class Bishop extends Piece
 	}
 
 	@Override
-	public boolean moveIsPossible(Point currentPiece, Point nextPiece) {
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -15,7 +15,7 @@ public class Queen extends Piece
 	/**
 	 * TODO.
 	 *
-	 * @param board TODO
+	 * 
      */
 	public Queen(Color color)
 	{
@@ -37,7 +37,7 @@ public class Queen extends Piece
 	}
 
 	@Override
-	public boolean moveIsPossible(Point currentPiece, Point nextPiece) {
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) {
 		// TODO Auto-generated method stub
 		return false;
 	}

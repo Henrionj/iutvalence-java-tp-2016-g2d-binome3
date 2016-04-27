@@ -44,7 +44,7 @@ public class Pawn extends Piece
 	}
 
 	@Override
-	public boolean moveIsPossible(Point currentPiece, Point nextPiece) 
+	public boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) 
 	{
 		if(currentPiece.getY() == nextPiece.getY()+2 && isFirstMove())
 			return true;
