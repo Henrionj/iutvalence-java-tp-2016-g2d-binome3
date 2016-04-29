@@ -1,5 +1,6 @@
 package fr.iutvalence.henrionjulien.chess;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import fr.iutvalence.henrionjulien.chess.piece.Blank;
@@ -25,13 +26,12 @@ public class Game
 	/** TODO. */
 	private int turn = 1;
 	/** TODO. */
-	private Point currentPiece
-				 ,nextCase;
+	private Point currentPiece = null
+				 ,nextCase = null;
 	/** The current color's player of the turn */
 	private Color currentColor;
 	/**A scanner to catch data from the keyboard.*/
 	private boolean KingIsDead;
-	Scanner s;
 	
 
 	/**
@@ -42,7 +42,6 @@ public class Game
 		this.board = new Board();
 		this.KingIsDead = false;
 		this.currentColor = Color.WHITE;
-		s = new Scanner(System.in);
 	}
 
 	public void run()
@@ -50,27 +49,20 @@ public class Game
 		System.out.println("******game is already running******");
 		while(this.KingIsDead == false)
 		{
-			System.out.println("turn "+turn);
-			this.board.display();
-			
-			/*
-			 * change the color of the player in terms of the turn.
-			 */
-			if((turn%2) == 0)
+			this.newTurn();
+ 			while(this.currentPiece == null)
 			{
-				this.currentColor = Color.BLACK;
+				this.currentPiece = null;
+				System.out.println("\ndonnez la position x,puis la position y de la piece:");	
+				try 
+					{
+					 this.currentPiece = this.askPosition(this.currentPiece);
+					}
+				catch (PointException e)
+					{
+						System.out.println("Coordonnées invalides, veuillez saisir un chiffre entre 0 et 7 pour x et y.");
+					}
 			}
-			else
-			{
-				this.currentColor = Color.WHITE;
-			}
-			
-			/*
-			 * Select the position of the choosenPiece
-			 */
-			System.out.println("\ndonnez la position x,puis la position y de la piece:");
-			this.currentPiece = new Point(s.nextInt(),s.nextInt());
-			
 			/*
 			 *verify if the piece is posseded by the player, he can select her future move.
 			 * 
@@ -78,8 +70,19 @@ public class Game
 			if(isPosseded(this.board.getPiece(currentPiece)))
 			{
 				System.out.println(this.board.getPiece(currentPiece).toString());
-				System.out.println("donnez la position x,puis la position y du déplacement:");
-				this.nextCase = new Point(s.nextInt(),s.nextInt());
+				while(this.nextCase == null)
+				{
+					System.out.println("donnez la position x,puis la position y du déplacement:");
+					try 
+						{
+						this.nextCase = this.askPosition(this.nextCase);
+						}
+					catch (PointException e)
+						{
+							System.out.println("Coordonnées invalides, veuillez saisir un chiffre entre 0 et 7 pour x et y.");
+							this.nextCase = null;
+						}
+				}
 				/*
 				 * check if the piece of the next move is "eatable" (different color or blank)
 				 * and put her in the cemetery
@@ -127,6 +130,11 @@ public class Game
 		
 	}
 	
+	public void exit()
+	{
+		System.out.println("******exit******");
+	}
+	
 	public void move(Point currentPiece, Point nextCase)
 	{
 		board.getPieces()[nextCase.getY()][nextCase.getX()] = board.getPieces()[currentPiece.getY()][currentPiece.getX()];
@@ -140,10 +148,52 @@ public class Game
 		return false;
 	}
 	
-	public void exit()
+	public Point askPosition(Point p) throws PointException
 	{
-		System.out.println("******exit******");
-		s.close();	
+		Scanner s = new Scanner(System.in);
+		try
+		{
+			p = new Point(s.nextInt(),s.nextInt());
+			if(p.getX()<0 || p.getX()>7 || 
+					p.getY()<0 || p.getY()>7)
+			{
+				throw new PointException();
+			}
+		}
+		catch(InputMismatchException e)
+		{
+			s = new Scanner(System.in);
+			System.out.println("RUDY");
+		}
+		
+		return p;
 	}
+	
+	public void newTurn()
+	{
+		System.out.println("turn "+turn);
+		this.board.display();
+		
+		/*
+		 * change the color of the player in terms of the turn.
+		 */
+		if((turn%2) == 0)
+		{
+			this.currentColor = Color.BLACK;
+		}
+		else
+		{
+			this.currentColor = Color.WHITE;
+		}
+		
+		/*
+		 * Select the position of the choosenPiece
+		 */
+		this.currentPiece = null;
+		this.nextCase = null;
+	}
+	
+	
+	
 
 }
