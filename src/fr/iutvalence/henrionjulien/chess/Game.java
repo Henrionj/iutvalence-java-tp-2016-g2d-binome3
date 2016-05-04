@@ -93,10 +93,11 @@ public class Game
 							if(this.board.isEatable(board.getPiece(currentPiece), 
 									board.getPiece(nextCase)))
 							{
-								if(board.getPiece(nextCase).getClass() == new King(Color.BLACK).getClass())
+								if(board.getPiece(nextCase).isKing())
 									KingIsDead = true;
 								board.eat(board.getPiece(nextCase));
 								move(currentPiece,nextCase);
+								this.promotePawn(nextCase);
 								turn++;	
 								board.invertBoard();
 							}
@@ -163,8 +164,10 @@ public class Game
 		catch(InputMismatchException e)
 		{
 			s = new Scanner(System.in);
-			System.out.println("RUDY");
+			System.out.println("déplacement invalide.");
+			
 		}
+		
 		
 		return p;
 	}
@@ -191,6 +194,32 @@ public class Game
 		 */
 		this.currentPiece = null;
 		this.nextCase = null;
+	}
+	
+	public void promotePawn(Point current)
+	{
+		Scanner s = new Scanner(System.in);
+		if (current.getY() == 0 && this.board.getPiece(current).isPawn())
+		{
+			if(this.board.getPiece(current).getColor() == Color.WHITE && this.board.getWhiteCemetery().size()!=0)
+			{
+			    for(int i = 0; i < this.board.getWhiteCemetery().size(); i++)
+			    {
+			      System.out.println(i + ".  " + this.board.getWhiteCemetery().get(i).toString());
+			    }  
+			    System.out.println("Veuillez selectionner une pièce du cimetière. (un nombre est attendu)");
+			    this.board.getPieces()[current.getY()][current.getX()] = this.board.getWhiteCemetery().get(s.nextInt());
+			}
+			if(this.board.getPiece(current).getColor() == Color.BLACK && this.board.getBlackCemetery().size()!=0)
+			{
+				   for(int i = 0; i < this.board.getBlackCemetery().size(); i++)
+				    {
+				      System.out.println(i + ".  " + this.board.getBlackCemetery().get(i).toString());
+				      System.out.println("Veuillez selectionner une pièce du cimetière. (un nombre est attendu)");
+				      this.board.getPieces()[current.getY()][current.getX()] = this.board.getBlackCemetery().get(s.nextInt());
+				    }  
+			}
+		}
 	}
 	
 	

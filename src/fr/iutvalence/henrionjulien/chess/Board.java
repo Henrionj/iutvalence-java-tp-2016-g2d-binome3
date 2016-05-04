@@ -1,5 +1,7 @@
 package fr.iutvalence.henrionjulien.chess;
 
+import java.util.ArrayList;
+
 import fr.iutvalence.henrionjulien.chess.piece.Bishop;
 import fr.iutvalence.henrionjulien.chess.piece.Blank;
 import fr.iutvalence.henrionjulien.chess.piece.Color;
@@ -29,21 +31,17 @@ public class Board
 	private Piece pieces[][];
 	
 	/** cemetery of black pieces eaten by the oppenent */
-	private Piece blackCemetery[];
+	private ArrayList<Piece> blackCemetery;
 	/** cemetery of white pieces eaten by the oppenent */
-	private Piece whiteCemetery[];
+	private ArrayList<Piece> whiteCemetery;
 	
-	private int whitePieceKilled,
-				blackPieceKilled;
 	
 	/** TODO. */
 	public Board()
 	{
 		pieces = createPieceGame();
-		blackCemetery = new Piece[PIECE_NUMBER];
-		whiteCemetery = new Piece[PIECE_NUMBER];
-		whitePieceKilled = 0;
-		blackPieceKilled = 0;
+		blackCemetery = new ArrayList();
+		whiteCemetery = new ArrayList();
 		
 	}
 
@@ -72,9 +70,9 @@ public class Board
 			pieces[1][i] = new Pawn(Color.BLACK);
 			pieces[6][i] = new Pawn(Color.WHITE);
 		}
-		/**
-		 * pieces of the latter
-		 */
+		
+		  //pieces of the latter
+		 
 		
 		pieces[7][0] = new Rook(Color.WHITE);
 		pieces[7][1] = new Knight(Color.WHITE);
@@ -84,6 +82,7 @@ public class Board
 		pieces[7][5] = new Bishop(Color.WHITE);
 		pieces[7][6] = new Knight(Color.WHITE);
 		pieces[7][7] = new Rook(Color.WHITE);
+		
 
 
 		
@@ -151,15 +150,13 @@ public class Board
 	
 	public void eat(Piece choosePiece)
 	{
-		if(choosePiece.getColor() == Color.BLACK)
+		if(choosePiece.getColor() == Color.BLACK && !choosePiece.isPawn())
 		{
-			blackCemetery[blackPieceKilled] = choosePiece;
-			blackPieceKilled++;
+			blackCemetery.add(choosePiece);
 		}
-		if(choosePiece.getColor() == Color.WHITE)
+		if(choosePiece.getColor() == Color.WHITE && !choosePiece.isPawn())
 		{
-			whiteCemetery[whitePieceKilled] = choosePiece;
-			whitePieceKilled++;
+			whiteCemetery.add(choosePiece);
 		}
 	}
 	
@@ -189,6 +186,16 @@ public class Board
 		}
 		this.pieces = p;
 	}
+
+	public ArrayList<Piece> getBlackCemetery() {
+		return blackCemetery;
+	}
+
+	public ArrayList<Piece> getWhiteCemetery() {
+		return whiteCemetery;
+	}
+	
+	
 
 	
 

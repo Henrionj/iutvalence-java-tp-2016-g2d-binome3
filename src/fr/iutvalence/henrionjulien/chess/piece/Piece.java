@@ -50,5 +50,14 @@ public abstract class Piece
 	 * @throws NoMoveException
 	 */
 	public abstract boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) throws  NoMoveException;
+	
+	public boolean isKing()
+	{
+		return false;
+	}
 
+	public boolean isPawn()
+	{
+		return false;
+	}
 }

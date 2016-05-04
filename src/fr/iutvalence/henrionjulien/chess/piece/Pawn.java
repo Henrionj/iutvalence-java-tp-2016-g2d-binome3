@@ -50,13 +50,19 @@ public class Pawn extends Piece
 		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX() 
 				&& p[nextPiece.getY()][nextPiece.getX()].getColor() == Color.BLANK)
 			return true;
+		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX()-1 
+				&& p[nextPiece.getY()][nextPiece.getX()].getColor() != Color.BLANK)
+			return true;
 		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX()+1 
 				&& p[nextPiece.getY()][nextPiece.getX()].getColor() != Color.BLANK)
 			return true;
-		if(currentPiece.getY() == nextPiece.getY()-1 && currentPiece.getX() == nextPiece.getX()+1 
-				&& p[nextPiece.getY()][nextPiece.getX()].getColor() != Color.BLANK)
-			return true;
 		return false;
+	}
+	
+	@Override
+	public boolean isPawn()
+	{
+		return true;
 	}
 	
 	
