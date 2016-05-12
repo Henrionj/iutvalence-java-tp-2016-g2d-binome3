@@ -18,9 +18,11 @@ public class King extends Piece
 	 *
 	 * 
      */
+	private boolean isMoved;
 	public King(Color color)
 	{
 		super(color);
+		this.isMoved = false;
 
 	}
 
@@ -36,21 +38,45 @@ public class King extends Piece
 		if(currentPiece.getY() == nextPiece.getY() && currentPiece.getX() == nextPiece.getX())
 			throw new NoMoveException();
 		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX())
+		{
+			this.isMoved = true;
 			return true;
+		}
 		if(currentPiece.getY() == nextPiece.getY()-1 && currentPiece.getX() == nextPiece.getX())
+		{
+			this.isMoved = true;
 			return true;
+		}
 		if(currentPiece.getY() == nextPiece.getY() && currentPiece.getX() == nextPiece.getX()+1)
+		{
+			this.isMoved = true;
 			return true;
+		}
 		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX()-1)
+		{
+			this.isMoved = true;
 			return true;
+		}
 		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX()+1)
+		{
+			this.isMoved = true;
 			return true;
+		}
 		if(currentPiece.getY() == nextPiece.getY()+1 && currentPiece.getX() == nextPiece.getX()-1)
+		{
+			this.isMoved = true;
 			return true;
+		}
 		if(currentPiece.getY() == nextPiece.getY()-1 && currentPiece.getX() == nextPiece.getX()+1)
+		{
+			this.isMoved = true;
 			return true;
+		}
 		if(currentPiece.getY() == nextPiece.getY()-1 && currentPiece.getX() == nextPiece.getX()-1)
+		{
+			this.isMoved = true;
 			return true;
+		}
 		return false;
 	}
 	
@@ -60,5 +86,11 @@ public class King extends Piece
 		return true;
 	}
 
+
+	public boolean isMoved() {
+		return isMoved;
+	}
+
+	
 	
 }

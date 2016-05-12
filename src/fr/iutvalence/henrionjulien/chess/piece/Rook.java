@@ -18,9 +18,12 @@ public class Rook extends Piece
 	 * 
 	 * 
      */
+	private boolean isMoved;
+	
 	public Rook(Color color)
 	{
 		super(color);
+		this.isMoved = false;
 
 	}
 								
@@ -48,6 +51,7 @@ public class Rook extends Piece
 						return false;
 					i++;
 				}
+				this.isMoved = true;
 				return true;
 			}
 			else
@@ -60,6 +64,7 @@ public class Rook extends Piece
 						return false;
 					i++;
 				}
+				this.isMoved = true;
 				return true;
 				
 			}
@@ -75,6 +80,7 @@ public class Rook extends Piece
 						return false;
 					i++;
 				}
+				this.isMoved = true;
 				return true;
 			}
 			else
@@ -86,6 +92,7 @@ public class Rook extends Piece
 						return false;
 					i++;
 				}
+				this.isMoved = true;
 				return true;
 				
 			}
@@ -93,5 +100,17 @@ public class Rook extends Piece
 		
 			return false;
 	}
+
+
+	public boolean isMoved() {
+		return isMoved;
+	}
+	
+	public boolean isRook()
+	{
+		return true;
+	}
+	
+	
 	
 }

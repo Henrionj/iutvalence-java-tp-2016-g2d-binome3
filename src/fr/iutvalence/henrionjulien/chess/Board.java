@@ -40,8 +40,8 @@ public class Board
 	public Board()
 	{
 		pieces = createPieceGame();
-		blackCemetery = new ArrayList();
-		whiteCemetery = new ArrayList();
+		blackCemetery = new ArrayList<Piece>();
+		whiteCemetery = new ArrayList<Piece>();
 		
 	}
 
@@ -53,7 +53,7 @@ public class Board
 	private Piece[][] createPieceGame()
 	{
       
-		Piece[][] pieces = new Piece[this.WIDTH][this.HEIGHT];
+		Piece[][] pieces = new Piece[Board.WIDTH][Board.HEIGHT];
 		/**
 		 * pieces of one player
 		 */

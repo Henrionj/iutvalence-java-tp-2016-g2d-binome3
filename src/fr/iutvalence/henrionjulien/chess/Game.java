@@ -8,6 +8,7 @@ import fr.iutvalence.henrionjulien.chess.piece.Color;
 import fr.iutvalence.henrionjulien.chess.piece.King;
 import fr.iutvalence.henrionjulien.chess.piece.NoMoveException;
 import fr.iutvalence.henrionjulien.chess.piece.Piece;
+import fr.iutvalence.henrionjulien.chess.piece.Rook;
 
 /**
  * TODO.
@@ -50,7 +51,9 @@ public class Game
 		while(this.KingIsDead == false)
 		{
 			this.newTurn();
- 			while(this.currentPiece == null)
+ 			if(this.castLing())
+ 				continue;
+			while(this.currentPiece == null)
 			{
 				this.currentPiece = null;
 				System.out.println("\ndonnez la position x,puis la position y de la piece:");	
@@ -221,7 +224,39 @@ public class Game
 			}
 		}
 	}
-	
+
+	public boolean castLing()
+	{
+		King king;
+		Rook rook;
+		for(int i = 0;i<7;i++)
+		{
+			if(this.board.getPiece(new Point(i,7)).isKing())
+			{
+				king = (King)this.board.getPiece(new Point(i,7));
+				if(king.isMoved())
+				{
+					return false;
+				}
+			}
+			
+			if(this.board.getPiece(new Point(i,7)).isRook())
+			{
+				rook = (Rook)this.board.getPiece(new Point(i,7));
+				if(rook.isMoved())
+				{
+					return false;
+				}
+			}
+			
+		}
+		
+		
+		
+		this.turn++;	
+		board.invertBoard();
+		return true;
+	}
 	
 	
 

@@ -60,4 +60,9 @@ public abstract class Piece
 	{
 		return false;
 	}
+	
+	public boolean isRook()
+	{
+		return false;
+	}
 }
