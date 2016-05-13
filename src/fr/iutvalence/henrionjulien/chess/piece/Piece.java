@@ -65,4 +65,11 @@ public abstract class Piece
 	{
 		return false;
 	}
+	
+	public void Moved() {}
+	
+	public boolean isMoved(){
+		
+		return false;
+	}
 }

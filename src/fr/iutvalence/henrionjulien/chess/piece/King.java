@@ -91,6 +91,13 @@ public class King extends Piece
 		return isMoved;
 	}
 
+
+	public void Moved() {
+		isMoved = true;
+	}
+	
+	
+
 	
 	
 }

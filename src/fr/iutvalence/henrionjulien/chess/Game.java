@@ -101,6 +101,9 @@ public class Game
 								board.eat(board.getPiece(nextCase));
 								move(currentPiece,nextCase);
 								this.promotePawn(nextCase);
+								System.out.println("Déplacement effectué!");
+								this.board.display();
+								System.out.println("\n\n\n\n*********************************************************************************************");
 								turn++;	
 								board.invertBoard();
 							}
@@ -229,29 +232,127 @@ public class Game
 	{
 		King king;
 		Rook rook;
-		for(int i = 0;i<7;i++)
+		int kingX = 0;
+		int sizeLeftCastling = 0,
+			sizeRightCastling = 0;
+		boolean leftCastling = true,
+				rightCastling = true;
+		Scanner s = new Scanner(System.in);
+		for(int i = 0;i<8;i++)
 		{
 			if(this.board.getPiece(new Point(i,7)).isKing())
 			{
 				king = (King)this.board.getPiece(new Point(i,7));
-				if(king.isMoved())
+				if(board.getPieces()[7][i].isMoved())
 				{
 					return false;
 				}
-			}
-			
-			if(this.board.getPiece(new Point(i,7)).isRook())
-			{
-				rook = (Rook)this.board.getPiece(new Point(i,7));
-				if(rook.isMoved())
-				{
-					return false;
+				kingX = i;
+			    for(i = kingX;i<8;i++)
+			    {
+			    	if(this.board.getPiece(new Point(i,7)).isRook())
+					{
+						rook = (Rook)this.board.getPiece(new Point(i,7));
+						if(rook.isMoved())
+						{
+							return false;
+						}
+						for(i = 1;i<kingX;i++)
+						{
+							if(this.board.getPiece(new Point(i,7)).getColor() != Color.BLANK)
+								leftCastling = false;
+							sizeLeftCastling++;
+						}
+						for(i = kingX+1;i<7;i++)
+						{
+							if(this.board.getPiece(new Point(i,7)).getColor() != Color.BLANK)
+								rightCastling = false;
+							sizeRightCastling++;
+						}
+			        }
 				}
+				
 			}
 			
 		}
+		if(!leftCastling && !rightCastling)
+			return false;
+		System.out.println("\nRoque possible, voulez vous en effectuer un? 0 = oui/1 = non");
+		if(s.nextInt() == 1)
+			return false;
+		System.out.println("left = "+sizeLeftCastling + " right = " + sizeRightCastling);
+		if(leftCastling && rightCastling)
+		{
+			int answer = -1;
+			System.out.println("deux roques possibles, voulez vous effectuer un roque par la droite ou par la gauche?"
+					+ "\n 0 = Droite / 1 = Gauche");
+			answer = s.nextInt();
+			if(answer == 1)
+			{
+				switch(sizeLeftCastling)
+				{
+				case 2:
+					move(new Point(kingX,7),new Point(1,7));
+					move(new Point(0,7),new Point(2,7));
+				break;
+				case 3:
+					move(new Point(kingX,7),new Point(2,7));
+					move(new Point(0,7),new Point(3,7));
+				break;
+				
+				}
+			}
+			if(answer == 0)
+			{
+				switch(sizeRightCastling)
+				{
+				case 2:
+					move(new Point(kingX,7),new Point(6,7));
+					move(new Point(0,7),new Point(5,7));
+				break;
+				case 3:
+					move(new Point(kingX,7),new Point(5,7));
+					move(new Point(0,7),new Point(4,7));
+				break;
+				
+				}
+			}
+			
+			
+		}
 		
+		if(leftCastling && !rightCastling)
+		{
+			switch(sizeLeftCastling)
+			{
+			case 2:
+				move(new Point(kingX,7),new Point(1,7));
+				move(new Point(0,7),new Point(2,7));
+			break;
+			case 3:
+				move(new Point(kingX,7),new Point(2,7));
+				move(new Point(0,7),new Point(3,7));
+			break;
+			
+			}
+		}
 		
+		if(!leftCastling && rightCastling)
+		{
+			switch(sizeRightCastling)
+			{
+			case 2:
+				move(new Point(kingX,7),new Point(6,7));
+				move(new Point(0,7),new Point(5,7));
+			break;
+			case 3:
+				move(new Point(kingX,7),new Point(5,7));
+				move(new Point(0,7),new Point(4,7));
+			break;
+			}
+		}
+		
+		board.getPieces()[7][kingX].Moved();
 		
 		this.turn++;	
 		board.invertBoard();
