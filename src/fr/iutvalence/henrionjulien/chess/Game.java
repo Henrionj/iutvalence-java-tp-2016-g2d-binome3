@@ -230,7 +230,6 @@ public class Game
 
 	public boolean castLing()
 	{
-		King king;
 		Rook rook;
 		int kingX = 0;
 		int sizeLeftCastling = 0,
@@ -242,7 +241,6 @@ public class Game
 		{
 			if(this.board.getPiece(new Point(i,7)).isKing())
 			{
-				king = (King)this.board.getPiece(new Point(i,7));
 				if(board.getPieces()[7][i].isMoved())
 				{
 					return false;
@@ -289,6 +287,7 @@ public class Game
 			answer = s.nextInt();
 			if(answer == 1)
 			{
+				board.getPieces()[7][kingX].Moved();
 				switch(sizeLeftCastling)
 				{
 				case 2:
@@ -304,6 +303,7 @@ public class Game
 			}
 			if(answer == 0)
 			{
+				board.getPieces()[7][kingX].Moved();
 				switch(sizeRightCastling)
 				{
 				case 2:
@@ -323,6 +323,7 @@ public class Game
 		
 		if(leftCastling && !rightCastling)
 		{
+			board.getPieces()[7][kingX].Moved();
 			switch(sizeLeftCastling)
 			{
 			case 2:
@@ -339,6 +340,7 @@ public class Game
 		
 		if(!leftCastling && rightCastling)
 		{
+			board.getPieces()[7][kingX].Moved();
 			switch(sizeRightCastling)
 			{
 			case 2:
@@ -352,7 +354,6 @@ public class Game
 			}
 		}
 		
-		board.getPieces()[7][kingX].Moved();
 		
 		this.turn++;	
 		board.invertBoard();
