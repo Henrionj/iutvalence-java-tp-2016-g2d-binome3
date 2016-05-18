@@ -12,9 +12,9 @@ public class Blank extends Piece {
 	 * The constructor for a Blank Case.
 	 * @param color the color of the Blank Case.
 	 */
-	public Blank(Color color)
+	public Blank()
 	{
-		super(color);
+		super(Color.BLANK);
 	}
 	
 	@Override

@@ -18,25 +18,27 @@ import fr.iutvalence.henrionjulien.chess.piece.Rook;
  */
 public class Game
 {
-	/** TODO. */
+	/** Chessboard of the game. */
 
 	private final Board board;
-	/** TODO. */
+	
 
 
-	/** TODO. */
+	/** current turn odd define the turn of the white player, even for the black. */
 	private int turn = 1;
 	/** TODO. */
 	private Point currentPiece = null
 				 ,nextCase = null;
 	/** The current color's player of the turn */
 	private Color currentColor;
-	/**A scanner to catch data from the keyboard.*/
+	/**A scanner use to key in data from the keyboard.*/
 	private boolean KingIsDead;
 	
 
 	/**
-	 * TODO.
+	 * Create a board
+	 * the gamme is running while the 2 kings are alive
+	 * The game begins with the player who plays the white pieces.
      */
 	public Game()
 	{
@@ -44,7 +46,9 @@ public class Game
 		this.KingIsDead = false;
 		this.currentColor = Color.WHITE;
 	}
-
+/**
+ * Run the game.
+ */
 	public void run()
 	{	
 		System.out.println("******game is already running******");
@@ -136,25 +140,38 @@ public class Game
 		this.exit();
 		
 	}
-	
+	/**
+	 * Exit the game.
+	 */
 	public void exit()
 	{
 		System.out.println("******exit******");
 	}
-	
+	/**
+	 * Allow the movement of one piece.
+	 * @param currentPiece The piece selected by the player
+	 * @param nextCase The next position of piece selected
+	 */
 	public void move(Point currentPiece, Point nextCase)
 	{
 		board.getPieces()[nextCase.getY()][nextCase.getX()] = board.getPieces()[currentPiece.getY()][currentPiece.getX()];
-		board.getPieces()[currentPiece.getY()][currentPiece.getX()] = new Blank(Color.BLANK);	
+		board.getPieces()[currentPiece.getY()][currentPiece.getX()] = new Blank();	
 	}
-	
+	/**
+	 * Check if the piece if posseded by the player of the same colour.
+	 * @param piece
+	 * @return a boolean to know if the piece is posseded by the current player.
+	 */
 	public boolean isPosseded(Piece piece)
 	{
-		if(this.currentColor == piece.getColor())
-			return true;
-		return false;
+		return (this.currentColor == piece.getColor());
 	}
-	
+	/**
+	 * Ask the position in the array  to do a  move.
+	 * @param p The position we are looking for.
+	 * @return p : The postion
+	 * @throws PointException
+	 */
 	public Point askPosition(Point p) throws PointException
 	{
 		Scanner s = new Scanner(System.in);
@@ -169,15 +186,17 @@ public class Game
 		}
 		catch(InputMismatchException e)
 		{
-			s = new Scanner(System.in);
-			System.out.println("déplacement invalide.");
-			
+			System.err.println("déplacement invalide.");			
 		}
 		
 		
 		return p;
 	}
-	
+	/**
+	 * 
+	 * Start a new turn and add 1 to turn attribut
+	 * The next player can perform an action.
+	 */
 	public void newTurn()
 	{
 		System.out.println("turn "+turn);
@@ -186,14 +205,7 @@ public class Game
 		/*
 		 * change the color of the player in terms of the turn.
 		 */
-		if((turn%2) == 0)
-		{
-			this.currentColor = Color.BLACK;
-		}
-		else
-		{
-			this.currentColor = Color.WHITE;
-		}
+		this.currentColor = ((turn%2) == 0) ? Color.BLACK : Color.WHITE;
 		
 		/*
 		 * Select the position of the choosenPiece
@@ -202,6 +214,10 @@ public class Game
 		this.nextCase = null;
 	}
 	
+	/**
+	 * When a pawn reach the last row, he can perform a promotion and choose among the piece in his own the cemetery
+	 * @param current
+	 */
 	public void promotePawn(Point current)
 	{
 		Scanner s = new Scanner(System.in);
@@ -227,7 +243,10 @@ public class Game
 			}
 		}
 	}
-
+	/**
+	 * realize the castling action if every conditions have been fullfilled. 
+	 * @return <tt>true</tt> if the castling have been done, <tt>false</tt> if not.
+	 */
 	public boolean castLing()
 	{
 		Rook rook;

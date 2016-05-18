@@ -1,6 +1,6 @@
 /** Main package.
  *
- * @author TODO
- * @version TODO
+ * @author Murer & Henrion
+ * @version 1
  */
 package fr.iutvalence.henrionjulien.chess;

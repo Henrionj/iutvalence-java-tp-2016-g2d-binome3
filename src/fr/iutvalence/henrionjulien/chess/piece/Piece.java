@@ -51,23 +51,42 @@ public abstract class Piece
 	 */
 	public abstract boolean moveIsPossible(Point currentPiece, Point nextPiece,Piece p[][]) throws  NoMoveException;
 	
+	/**
+	 * Check if the current piece is the king  
+	 * @return <tt>true</tt> if the piece is a king, <tt>false</tt> if not.
+	 */
 	public boolean isKing()
 	{
 		return false;
 	}
+	/**
+	 * Check if the current piece is the pawn.  
+	 * @return <tt>true</tt> if the piece is a pawn, <tt>false</tt> if not.
+	 */
 
 	public boolean isPawn()
 	{
 		return false;
 	}
 	
+	/**
+	 * Check if the current piece is the rook  
+	 * @return <tt>true</tt> if the piece is a rook, <tt>false</tt> if not.
+	 */
 	public boolean isRook()
 	{
 		return false;
 	}
 	
+	/**
+	 * Check if the piece is a king or a rook and has already move.
+	 */
 	public void Moved() {}
 	
+	/**
+	 * Check if piece have already move. 
+	 * @return <tt>true</tt> if the piece has already move and if it's a Rook or a King, <tt>false</tt> if not.
+	 */
 	public boolean isMoved(){
 		
 		return false;

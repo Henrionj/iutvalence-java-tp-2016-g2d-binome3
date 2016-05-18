@@ -1,6 +1,7 @@
 package fr.iutvalence.henrionjulien.chess;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.iutvalence.henrionjulien.chess.piece.Bishop;
 import fr.iutvalence.henrionjulien.chess.piece.Blank;
@@ -13,10 +14,10 @@ import fr.iutvalence.henrionjulien.chess.piece.Queen;
 import fr.iutvalence.henrionjulien.chess.piece.Rook;
 
 /**
- * TODO.
+ * the array which represent a chessboard ,with his pieces.
  *
  * @author henrion & murer
- * @version TODO
+ * @version V1
  */
 public class Board
 {
@@ -31,30 +32,33 @@ public class Board
 	private Piece pieces[][];
 	
 	/** cemetery of black pieces eaten by the oppenent */
-	private ArrayList<Piece> blackCemetery;
+	private List<Piece> blackCemetery;
 	/** cemetery of white pieces eaten by the oppenent */
-	private ArrayList<Piece> whiteCemetery;
+	private List<Piece> whiteCemetery;
 	
 	
-	/** TODO. */
+	/** 
+	 * The constructor of the board.
+	 *
+	 */
 	public Board()
 	{
 		pieces = createPieceGame();
-		blackCemetery = new ArrayList<Piece>();
-		whiteCemetery = new ArrayList<Piece>();
+		blackCemetery = new ArrayList<Piece>(16);
+		whiteCemetery = new ArrayList<Piece>(16);
 		
 	}
 
 	/**
-	 * TODO.
+	 *Initialize an array of pieces.
      *
-	 * @return TODO
+	 * @return an array which contain every pieces from a normal chess game.
 	 */
 	private Piece[][] createPieceGame()
 	{
       
 		Piece[][] pieces = new Piece[Board.WIDTH][Board.HEIGHT];
-		/**
+		/*
 		 * pieces of one player
 		 */
 		pieces[0][0] = new Rook(Color.BLACK);
@@ -90,13 +94,16 @@ public class Board
 		{
 			for(int j = 0;j<8;j++)
 			{
-				pieces[i][j] = new Blank(Color.BLANK);
+				pieces[i][j] = new Blank();
 			}
 		}
 
 		return pieces;
 	}
 	
+	/** Display the array on the console
+	 * 
+	 */
 	public void display()
 	{
 		for(int j = 0;j<WIDTH;j++)
@@ -125,21 +132,31 @@ public class Board
 	 */
 	public boolean isEmpty(int x,int y,Piece pieces[][])
 	{
-		if (pieces[y][x].getColor() == Color.BLANK )
-			return true;
-		
-		return false;		
+		return (pieces[y][x].getColor() == Color.BLANK );
 	}
-
+/**
+ * *
+ * @param piece
+ * @return The piece from the position where she belong on the board.
+ */
 	public Piece getPiece(Point piece) {
 		return pieces[piece.getY()][piece.getX()];
 	}
 	
+	/**
+	 * 
+	 * @return the array of pieces
+	 */
 	public Piece[][] getPieces()
 	{
 		return pieces;
 	}
-	
+	/**
+	 * 
+	 * @param currentPiece  Piece selected by the player
+	 * @param choosePiece   Next movement 
+	 * @return true if the piece can be eat ( i.e a black piece can eat a white piece) 
+	 */
 	public boolean isEatable(Piece currentPiece, Piece choosePiece)
 	{
 		if(currentPiece.getColor() == choosePiece.getColor())
@@ -147,7 +164,11 @@ public class Board
 		
 		return true;
 	}
-	
+	/**
+	 * Eat the opponent piece's
+	 * 
+	 * @param choosePiece
+	 */
 	public void eat(Piece choosePiece)
 	{
 		if(choosePiece.getColor() == Color.BLACK && !choosePiece.isPawn())
@@ -161,7 +182,8 @@ public class Board
 	}
 	
 	/**
-	 * TODO
+	 * Reverse the chessboard in order to create the same view for each players.
+	 * 
 	 */
 	public void invertBoard()
 	{
@@ -186,12 +208,18 @@ public class Board
 		}
 		this.pieces = p;
 	}
-
-	public ArrayList<Piece> getBlackCemetery() {
+/**
+ * 
+ * @return The black cemetery.
+ */
+	public List<Piece> getBlackCemetery() {
 		return blackCemetery;
 	}
-
-	public ArrayList<Piece> getWhiteCemetery() {
+/**
+ * 
+ * @return The white cemetery.
+ */
+	public List<Piece> getWhiteCemetery() {
 		return whiteCemetery;
 	}
 	

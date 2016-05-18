@@ -1,18 +1,19 @@
 package fr.iutvalence.henrionjulien.chess;
 
 /**
- * TODO.
+ * The main class
  *
  * @author henrion & murer
- * @version TODO
+ * @version V1 
+ *  
  */
 public class Chess
 {
 	
 	/**
-	 * TODO.
+	 * Run the application.
 	 *
-	 * @param args TODO.
+	 * @param args null
 	 */
 	public static void main(String[] args) {
 		Game game = new Game();

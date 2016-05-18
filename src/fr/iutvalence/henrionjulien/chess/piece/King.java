@@ -86,12 +86,12 @@ public class King extends Piece
 		return true;
 	}
 
-
+	@Override
 	public boolean isMoved() {
 		return isMoved;
 	}
 
-
+	@Override
 	public void Moved() {
 		isMoved = true;
 	}
