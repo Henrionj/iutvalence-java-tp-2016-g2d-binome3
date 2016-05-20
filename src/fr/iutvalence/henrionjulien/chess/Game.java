@@ -3,92 +3,88 @@ package fr.iutvalence.henrionjulien.chess;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import fr.iutvalence.henrionjulien.chess.piece.Blank;
 import fr.iutvalence.henrionjulien.chess.piece.Color;
-import fr.iutvalence.henrionjulien.chess.piece.King;
 import fr.iutvalence.henrionjulien.chess.piece.NoMoveException;
-import fr.iutvalence.henrionjulien.chess.piece.Piece;
 import fr.iutvalence.henrionjulien.chess.piece.Rook;
 
 /**
  * TODO.
  *
  * @author henrion & murer
- * @version TODO
+ * @version V1
  */
 public class Game
 {
 	/** Chessboard of the game. */
-
 	private final Board board;
-	
-
-
+	/**A scanner use to key in data from the keyboard.*/
+	private final Scanner s;
 	/** current turn odd define the turn of the white player, even for the black. */
 	private int turn = 1;
-	/** TODO. */
-	private Point currentPiece = null
-				 ,nextCase = null;
-	/** The current color's player of the turn */
-	private Color currentColor;
-	/**A scanner use to key in data from the keyboard.*/
-	private boolean KingIsDead;
 	
+	private String player1;
+	private String player2;
+
 
 	/**
 	 * Create a board
-	 * the gamme is running while the 2 kings are alive
+	 * the game is running while the 2 kings are alive
 	 * The game begins with the player who plays the white pieces.
-     */
-	public Game()
+	 */
+	public Game(String p1, String p2, Scanner scanner)
 	{
 		this.board = new Board();
-		this.KingIsDead = false;
-		this.currentColor = Color.WHITE;
+		this.s = scanner;
+		player1 = p1;
+		player2 = p2;
 	}
-/**
- * Run the game.
- */
+	/**
+	 * Run the game.
+	 */
 	public void run()
 	{	
+		Color currentColor = Color.WHITE;
+		boolean kingIsDead = false;
 		System.out.println("******game is already running******");
-		while(this.KingIsDead == false)
+		while(!kingIsDead)
 		{
-			this.newTurn();
- 			if(this.castLing())
- 				continue;
-			while(this.currentPiece == null)
+			Point currentPiece = null;
+			currentColor = this.newTurn();
+			if(this.castLing())
+				continue;
+			while(currentPiece == null)
 			{
-				this.currentPiece = null;
+				currentPiece = null;
 				System.out.println("\ndonnez la position x,puis la position y de la piece:");	
 				try 
-					{
-					 this.currentPiece = this.askPosition(this.currentPiece);
-					}
+				{
+					currentPiece = this.askPosition(currentPiece);
+				}
 				catch (PointException e)
-					{
-						System.out.println("Coordonnées invalides, veuillez saisir un chiffre entre 0 et 7 pour x et y.");
-					}
+				{
+					System.out.println("Coordonnées invalides, veuillez saisir un chiffre entre 0 et 7 pour x et y.");
+				}
 			}
 			/*
 			 *verify if the piece is posseded by the player, he can select her future move.
 			 * 
 			 */
-			if(isPosseded(this.board.getPiece(currentPiece)))
+			if(this.board.getPiece(currentPiece).getColor() == currentColor)
 			{
+				Point nextCase = null;
 				System.out.println(this.board.getPiece(currentPiece).toString());
-				while(this.nextCase == null)
+				while(nextCase == null)
 				{
 					System.out.println("donnez la position x,puis la position y du déplacement:");
 					try 
-						{
-						this.nextCase = this.askPosition(this.nextCase);
-						}
+					{
+						nextCase = this.askPosition(nextCase);
+					}
 					catch (PointException e)
-						{
-							System.out.println("Coordonnées invalides, veuillez saisir un chiffre entre 0 et 7 pour x et y.");
-							this.nextCase = null;
-						}
+					{
+						System.out.println("Coordonnées invalides, veuillez saisir un chiffre entre 0 et 7 pour x et y.");
+						nextCase = null;
+					}
 				}
 				/*
 				 * check if the piece of the next move is "eatable" (different color or blank)
@@ -96,27 +92,25 @@ public class Game
 				 */
 				try {
 					if(this.board.getPiece(currentPiece).moveIsPossible(currentPiece, nextCase, board.getPieces()))
-						{
-							if(this.board.isEatable(board.getPiece(currentPiece), 
-									board.getPiece(nextCase)))
-							{
-								if(board.getPiece(nextCase).isKing())
-									KingIsDead = true;
-								board.eat(board.getPiece(nextCase));
-								move(currentPiece,nextCase);
-								this.promotePawn(nextCase);
-								System.out.println("Déplacement effectué!");
-								this.board.display();
-								System.out.println("\n\n\n\n*********************************************************************************************");
-								turn++;	
-								board.invertBoard();
-							}
-							else
-							{
-								System.out.println("Mouvement non autorisé, la case contient une autre pièce de même couleur.");
-							}
-							
+					{
+						if (this.board.isEatable(currentPiece, nextCase)) {
+							if(board.getPiece(nextCase).isKing())
+								kingIsDead = true;
+							board.eat(board.getPiece(nextCase));
+							board.move(currentPiece,nextCase);
+							this.promotePawn(nextCase);
+							System.out.println("Déplacement effectué!");
+							this.board.display();
+							System.out.println("\n\n\n\n*********************************************************************************************");
+							turn++;	
+							board.invertBoard();
 						}
+						else
+						{
+							System.out.println("Mouvement non autorisé, la case contient une autre pièce de même couleur.");
+						}
+
+					}
 					else
 					{
 						System.out.println("mouvement non autorisé, la pièce ne peut faire un tel mouvement.");
@@ -124,21 +118,18 @@ public class Game
 				} catch (NoMoveException e) {
 					System.out.println("Vous ne pouvez pas déplacer la pièce sur elle même!");
 				}
-				
+
 			}
-			
+
 			else
 			{
 				System.out.println("Vous ne possédez pas cette piece!");
 			}
 		}
-		if(this.currentColor == Color.WHITE)
-			System.out.println("Les Blancs gagnent");
-		if(this.currentColor == Color.BLACK)
-			System.out.println("Les Noirs gagnent");
-		
+		System.out.printf("Les %s gagnent", currentColor == Color.WHITE ? "Blancs" : "Noirs");
+
 		this.exit();
-		
+
 	}
 	/**
 	 * Exit the game.
@@ -148,25 +139,6 @@ public class Game
 		System.out.println("******exit******");
 	}
 	/**
-	 * Allow the movement of one piece.
-	 * @param currentPiece The piece selected by the player
-	 * @param nextCase The next position of piece selected
-	 */
-	public void move(Point currentPiece, Point nextCase)
-	{
-		board.getPieces()[nextCase.getY()][nextCase.getX()] = board.getPieces()[currentPiece.getY()][currentPiece.getX()];
-		board.getPieces()[currentPiece.getY()][currentPiece.getX()] = new Blank();	
-	}
-	/**
-	 * Check if the piece if posseded by the player of the same colour.
-	 * @param piece
-	 * @return a boolean to know if the piece is posseded by the current player.
-	 */
-	public boolean isPosseded(Piece piece)
-	{
-		return (this.currentColor == piece.getColor());
-	}
-	/**
 	 * Ask the position in the array  to do a  move.
 	 * @param p The position we are looking for.
 	 * @return p : The postion
@@ -174,22 +146,21 @@ public class Game
 	 */
 	public Point askPosition(Point p) throws PointException
 	{
-		Scanner s = new Scanner(System.in);
 		try
 		{
 			p = new Point(s.nextInt(),s.nextInt());
 			if(p.getX()<0 || p.getX()>7 || 
 					p.getY()<0 || p.getY()>7)
 			{
-				throw new PointException();
+				throw new PointException("coordonnée invalide");
 			}
 		}
 		catch(InputMismatchException e)
 		{
-			System.err.println("déplacement invalide.");			
+			throw new PointException("déplacement invalide.", e);			
 		}
-		
-		
+
+
 		return p;
 	}
 	/**
@@ -197,49 +168,43 @@ public class Game
 	 * Start a new turn and add 1 to turn attribut
 	 * The next player can perform an action.
 	 */
-	public void newTurn()
+	public Color newTurn()
 	{
-		System.out.println("turn "+turn);
+		System.out.println("turn "+turn + "\t"+ (((turn%2) == 0) ? this.player2 : this.player1));
 		this.board.display();
-		
+
 		/*
 		 * change the color of the player in terms of the turn.
 		 */
-		this.currentColor = ((turn%2) == 0) ? Color.BLACK : Color.WHITE;
-		
-		/*
-		 * Select the position of the choosenPiece
-		 */
-		this.currentPiece = null;
-		this.nextCase = null;
+		return  ((turn%2) == 0) ? Color.BLACK : Color.WHITE;
+
 	}
-	
+
 	/**
 	 * When a pawn reach the last row, he can perform a promotion and choose among the piece in his own the cemetery
 	 * @param current
 	 */
 	public void promotePawn(Point current)
 	{
-		Scanner s = new Scanner(System.in);
 		if (current.getY() == 0 && this.board.getPiece(current).isPawn())
 		{
 			if(this.board.getPiece(current).getColor() == Color.WHITE && this.board.getWhiteCemetery().size()!=0)
 			{
-			    for(int i = 0; i < this.board.getWhiteCemetery().size(); i++)
-			    {
-			      System.out.println(i + ".  " + this.board.getWhiteCemetery().get(i).toString());
-			    }  
-			    System.out.println("Veuillez selectionner une pièce du cimetière. (un nombre est attendu)");
-			    this.board.getPieces()[current.getY()][current.getX()] = this.board.getWhiteCemetery().get(s.nextInt());
+				for(int i = 0; i < this.board.getWhiteCemetery().size(); i++)
+				{
+					System.out.println(i + ".  " + this.board.getWhiteCemetery().get(i).toString());
+				}  
+				System.out.println("Veuillez selectionner une pièce du cimetière. (un nombre est attendu)");
+				board.promote(s.nextInt(), current, Color.WHITE);
 			}
 			if(this.board.getPiece(current).getColor() == Color.BLACK && this.board.getBlackCemetery().size()!=0)
 			{
-				   for(int i = 0; i < this.board.getBlackCemetery().size(); i++)
-				    {
-				      System.out.println(i + ".  " + this.board.getBlackCemetery().get(i).toString());
-				      System.out.println("Veuillez selectionner une pièce du cimetière. (un nombre est attendu)");
-				      this.board.getPieces()[current.getY()][current.getX()] = this.board.getBlackCemetery().get(s.nextInt());
-				    }  
+				for(int i = 0; i < this.board.getBlackCemetery().size(); i++)
+				{
+					System.out.println(i + ".  " + this.board.getBlackCemetery().get(i).toString());
+					System.out.println("Veuillez selectionner une pièce du cimetière. (un nombre est attendu)");
+					board.promote(s.nextInt(), current, Color.BLACK);
+				}  
 			}
 		}
 	}
@@ -252,22 +217,21 @@ public class Game
 		Rook rook;
 		int kingX = 0;
 		int sizeLeftCastling = 0,
-			sizeRightCastling = 0;
+				sizeRightCastling = 0;
 		boolean leftCastling = true,
 				rightCastling = true;
-		Scanner s = new Scanner(System.in);
 		for(int i = 0;i<8;i++)
 		{
 			if(this.board.getPiece(new Point(i,7)).isKing())
 			{
-				if(board.getPieces()[7][i].isMoved())
+				if(this.board.getPiece(new Point(i,7)).isMoved())
 				{
 					return false;
 				}
 				kingX = i;
-			    for(i = kingX;i<8;i++)
-			    {
-			    	if(this.board.getPiece(new Point(i,7)).isRook())
+				for(i = kingX;i<8;i++)
+				{
+					if(this.board.getPiece(new Point(i,7)).isRook())
 					{
 						rook = (Rook)this.board.getPiece(new Point(i,7));
 						if(rook.isMoved())
@@ -286,11 +250,11 @@ public class Game
 								rightCastling = false;
 							sizeRightCastling++;
 						}
-			        }
+					}
 				}
-				
+
 			}
-			
+
 		}
 		if(!leftCastling && !rightCastling)
 			return false;
@@ -306,79 +270,79 @@ public class Game
 			answer = s.nextInt();
 			if(answer == 1)
 			{
-				board.getPieces()[7][kingX].Moved();
+				board.moveKing(new Point(kingX,7));
 				switch(sizeLeftCastling)
 				{
 				case 2:
-					move(new Point(kingX,7),new Point(1,7));
-					move(new Point(0,7),new Point(2,7));
-				break;
+					board.move(new Point(kingX,7),new Point(1,7));
+					board.move(new Point(0,7),new Point(2,7));
+					break;
 				case 3:
-					move(new Point(kingX,7),new Point(2,7));
-					move(new Point(0,7),new Point(3,7));
-				break;
-				
+					board.move(new Point(kingX,7),new Point(2,7));
+					board.move(new Point(0,7),new Point(3,7));
+					break;
+
 				}
 			}
 			if(answer == 0)
 			{
-				board.getPieces()[7][kingX].Moved();
+				board.moveKing(new Point(kingX,7));
 				switch(sizeRightCastling)
 				{
 				case 2:
-					move(new Point(kingX,7),new Point(6,7));
-					move(new Point(0,7),new Point(5,7));
-				break;
+					board.move(new Point(kingX,7),new Point(6,7));
+					board.move(new Point(0,7),new Point(5,7));
+					break;
 				case 3:
-					move(new Point(kingX,7),new Point(5,7));
-					move(new Point(0,7),new Point(4,7));
-				break;
-				
+					board.move(new Point(kingX,7),new Point(5,7));
+					board.move(new Point(0,7),new Point(4,7));
+					break;
+
 				}
 			}
-			
-			
+
+
 		}
-		
+
 		if(leftCastling && !rightCastling)
 		{
-			board.getPieces()[7][kingX].Moved();
+			board.moveKing(new Point(kingX,7));
 			switch(sizeLeftCastling)
 			{
 			case 2:
-				move(new Point(kingX,7),new Point(1,7));
-				move(new Point(0,7),new Point(2,7));
-			break;
+				board.move(new Point(kingX,7),new Point(1,7));
+				board.move(new Point(0,7),new Point(2,7));
+				break;
 			case 3:
-				move(new Point(kingX,7),new Point(2,7));
-				move(new Point(0,7),new Point(3,7));
-			break;
-			
+				board.move(new Point(kingX,7),new Point(2,7));
+				board.move(new Point(0,7),new Point(3,7));
+				break;
+
 			}
 		}
-		
+
 		if(!leftCastling && rightCastling)
 		{
-			board.getPieces()[7][kingX].Moved();
+			board.moveKing(new Point(kingX,7));
 			switch(sizeRightCastling)
 			{
 			case 2:
-				move(new Point(kingX,7),new Point(6,7));
-				move(new Point(0,7),new Point(5,7));
-			break;
+				board.move(new Point(kingX,7),new Point(6,7));
+				board.move(new Point(0,7),new Point(5,7));
+				break;
 			case 3:
-				move(new Point(kingX,7),new Point(5,7));
-				move(new Point(0,7),new Point(4,7));
-			break;
+				board.move(new Point(kingX,7),new Point(5,7));
+				board.move(new Point(0,7),new Point(4,7));
+				break;
 			}
 		}
-		
-		
+
+
 		this.turn++;	
 		board.invertBoard();
 		return true;
 	}
-	
-	
+
+
 
 }

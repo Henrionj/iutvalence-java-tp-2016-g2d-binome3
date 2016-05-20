@@ -32,9 +32,9 @@ public class Board
 	private Piece pieces[][];
 	
 	/** cemetery of black pieces eaten by the oppenent */
-	private List<Piece> blackCemetery;
+	private final List<Piece> blackCemetery;
 	/** cemetery of white pieces eaten by the oppenent */
-	private List<Piece> whiteCemetery;
+	private final List<Piece> whiteCemetery;
 	
 	
 	/** 
@@ -153,16 +153,13 @@ public class Board
 	}
 	/**
 	 * 
-	 * @param currentPiece  Piece selected by the player
-	 * @param choosePiece   Next movement 
+	 * @param getPiece(currentPiece)  Piece selected by the player
+	 * @param getPiece(nextCase)   Next movement 
 	 * @return true if the piece can be eat ( i.e a black piece can eat a white piece) 
 	 */
-	public boolean isEatable(Piece currentPiece, Piece choosePiece)
+	public boolean isEatable(Point currentPiece, Point nextCase)
 	{
-		if(currentPiece.getColor() == choosePiece.getColor())
-			return false;		
-		
-		return true;
+		return (getPiece(currentPiece).getColor() != getPiece(nextCase).getColor());
 	}
 	/**
 	 * Eat the opponent piece's
@@ -223,6 +220,34 @@ public class Board
 		return whiteCemetery;
 	}
 	
+	/**
+	 * Allow the movement of one piece.
+	 * @param currentPiece The piece selected by the player
+	 * @param nextCase The next position of piece selected
+	 */
+	public void move(Point currentPiece, Point nextCase)
+	{
+		this.pieces[nextCase.getY()][nextCase.getX()] = pieces[currentPiece.getY()][currentPiece.getX()];
+		this.pieces[currentPiece.getY()][currentPiece.getX()] = new Blank();	
+	}
+	
+	public void promote(int ans,Point current,Color c)
+	{
+		if(c == Color.WHITE)
+		{
+			this.pieces[current.getY()][current.getX()] = this.getWhiteCemetery().get(ans);
+		}
+		
+		if(c == Color.BLACK)
+		{
+			this.pieces[current.getY()][current.getX()] = this.getBlackCemetery().get(ans);
+		}
+	}
+	
+	public void moveKing(Point current)
+	{
+	this.pieces[current.getY()][current.getX()].Moved();
+	}
 	
 
 	
