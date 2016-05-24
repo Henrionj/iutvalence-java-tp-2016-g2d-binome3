@@ -1,5 +1,10 @@
 package fr.iutvalence.henrionjulien.chess;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -26,6 +31,11 @@ public class Game
 	private String player1;
 	/** Name of the player 2 */
 	private String player2;
+	
+	
+	 private FileOutputStream fileWriter = null;
+	 private FileInputStream fileReader = null;
+	 
 
 
 	/**
@@ -37,14 +47,25 @@ public class Game
 	{
 		this.board = new Board();
 		this.s = scanner;
-		player1 = p1;
-		player2 = p2;
+		this.player1 = p1;
+		this.player2 = p2;
+		  try 
+			{
+			    fileReader = new FileInputStream(new File("chessSave.txt"));
+				this.readSave();
+			    fileWriter = new FileOutputStream(new File("chessSave.txt"));
+			} catch (FileNotFoundException e) 
+			{
+				System.out.println("File not found.");
+				e.printStackTrace();
+			}
 	}
 	/**
 	 * Run the game.
 	 */
 	public void run()
 	{	
+		char[] save = new char[7];
 		Color currentColor = Color.WHITE;
 		boolean kingIsDead = false;
 		System.out.println("******game is already running******");
@@ -52,6 +73,10 @@ public class Game
 		{
 			Point currentPiece = null;
 			currentColor = this.newTurn();
+			if((currentColor) == Color.WHITE)
+				save[0] = 'W';
+			else
+				save[0] = 'B';
 			if(this.castLing())
 				continue;
 			while(currentPiece == null)
@@ -61,6 +86,8 @@ public class Game
 				try 
 				{
 					currentPiece = this.askPosition(currentPiece);
+					save[1] = currentPiece.getCharX();
+					save[2] = currentPiece.getCharY();
 				}
 				catch (PointException e)
 				{
@@ -100,12 +127,24 @@ public class Game
 								kingIsDead = true;
 							board.eat(board.getPiece(nextCase));
 							board.move(currentPiece,nextCase);
+							save[3] = 'M';
+							if(this.board.getPiece(nextCase).getColor()!= this.board.getPiece(currentPiece).getColor() && this.board.getPiece(nextCase).getColor() != Color.BLANK)
+							{
+								save[4] = 'E';
+							}
+							else
+							{
+								save[4] = 'M';
+							}
+							save[5] = nextCase.getCharX();
+							save[6] = nextCase.getCharY();
 							this.promotePawn(nextCase);
 							System.out.println("Déplacement effectué!");
 							this.board.display();
 							System.out.println("\n\n\n\n*********************************************************************************************");
 							turn++;	
 							board.invertBoard();
+							this.writeTurn(save);
 						}
 						else
 						{
@@ -344,6 +383,67 @@ public class Game
 		board.invertBoard();
 		return true;
 	}
+	
+	 public void writeTurn(char turnSave[])
+	 {
+		 	byte[] endLine = {10};
+			byte[] save = new byte[7];
+			int indice = 0;
+		      for (char ch : turnSave)
+		      {
+		    	 
+		    	  save[indice] = (byte)ch;
+		    	  indice++;
+		      }
+		      try 
+		      {
+				  fileWriter.write(save);
+				  fileWriter.write(endLine);
+					      
+		      
+		      } catch (IOException e) 
+		      {
+				  e.printStackTrace();
+			  }	    
+	 }
+	 
+	  
+	 public void readSave()
+	 {
+		 Point currentPiece;
+		 Point nextCase;
+		 byte[] save = new byte[7];
+		 int end = 0;
+		 try {
+			while ( end != -1) 
+			{
+				System.out.println(end);
+				end = fileReader.read(save);
+				currentPiece = new Point((int)save[1]-48,(int)save[2]-48);
+		    	nextCase = new Point((int)save[5]-48,(int)save[6]-48);
+			    switch(save[3])
+			    {
+				    case (byte)'M':
+				    	board.eat(board.getPiece(nextCase));
+						board.move(currentPiece,nextCase);
+						this.board.display();
+						System.out.println("\n\n\n\n*********************************************************************************************");
+						turn++;	
+						board.invertBoard();
+				    	break;
+				    case (byte)'P':
+				    	break;
+				    case (byte)'C':
+				    	break;
+			    }
+		            
+			    save = new byte[7];
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 }
 
 
 

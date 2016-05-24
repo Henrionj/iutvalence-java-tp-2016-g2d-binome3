@@ -25,14 +25,14 @@ public class Point
 	}
 	/**
 	 * 
-	 * @return x the attribut of postion X for abscisse
+	 * @return x the attribut of position X for abscisse
 	 */
 	public int getX() {
 		return x;
 	}
 	/**
 	 * 
-	 * @return y the attribut of postion Y for Ordered
+	 * @return y the attribut of position Y for Ordered
 	 */
 	public int getY() {
 		return y;
@@ -41,6 +41,18 @@ public class Point
 	@Override
 	public String toString() {
 		return "Point [ "+ x + " , " + y + "]";
+	}
+	
+	public char getCharX()
+	{
+		String charX = "" + x;
+		return charX.charAt(0);
+	}
+	
+	public char getCharY()
+	{
+		String charY = "" + y;
+		return charY.charAt(0);
 	}
 	
 	
