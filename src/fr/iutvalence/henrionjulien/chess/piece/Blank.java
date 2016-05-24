@@ -3,7 +3,7 @@ package fr.iutvalence.henrionjulien.chess.piece;
 import fr.iutvalence.henrionjulien.chess.Point;
 
 /**
- * this class is use in order to  simulate a blank case of the board.
+ * this class is use in order to  simulate the blank case of a traditional chessboard.
  * @author henrionj
  *
  */

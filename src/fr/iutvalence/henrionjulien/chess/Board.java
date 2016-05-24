@@ -21,14 +21,14 @@ import fr.iutvalence.henrionjulien.chess.piece.Rook;
  */
 public class Board
 {
-	/** Chessboard's width. */
+	/** The width of the chessboard. */
 	public static final int WIDTH  = 8;
-	/** Chessboard's height. */
+	/** The height of the chessboard. */
 	public static final int HEIGHT = 8;
 	/** number of the pieces per player */
 	public static final int PIECE_NUMBER = 16;
 
-	/** the board of pieces of the game*/
+	/** the pieces of the game*/
 	private Piece pieces[][];
 	
 	/** cemetery of black pieces eaten by the oppenent */
@@ -59,7 +59,7 @@ public class Board
       
 		Piece[][] pieces = new Piece[Board.WIDTH][Board.HEIGHT];
 		/*
-		 * pieces of one player
+		 * pieces of one player(black)
 		 */
 		pieces[0][0] = new Rook(Color.BLACK);
 		pieces[0][1] = new Knight(Color.BLACK);
@@ -75,7 +75,7 @@ public class Board
 			pieces[6][i] = new Pawn(Color.WHITE);
 		}
 		
-		  //pieces of the latter
+		  //pieces of the latter(white)
 		 
 		
 		pieces[7][0] = new Rook(Color.WHITE);
@@ -101,7 +101,7 @@ public class Board
 		return pieces;
 	}
 	
-	/** Display the array on the console
+	/** Display the array in the console
 	 * 
 	 */
 	public void display()
@@ -230,7 +230,13 @@ public class Board
 		this.pieces[nextCase.getY()][nextCase.getX()] = pieces[currentPiece.getY()][currentPiece.getX()];
 		this.pieces[currentPiece.getY()][currentPiece.getX()] = new Blank();	
 	}
-	
+	/**
+	 * Method that promote a pawn into a existing piece from the player cemetery.
+	 * 
+	 * @param ans The answer to choose the piece.
+	 * @param current The current position.
+	 * @param c The color of the piece needed.
+	 */
 	public void promote(int ans,Point current,Color c)
 	{
 		if(c == Color.WHITE)
@@ -243,7 +249,11 @@ public class Board
 			this.pieces[current.getY()][current.getX()] = this.getBlackCemetery().get(ans);
 		}
 	}
-	
+	/**
+	 * Check is the king have been moved during the game
+	 * This method is needed for the castling.
+	 * @param current The current position.
+	 */
 	public void moveKing(Point current)
 	{
 	this.pieces[current.getY()][current.getX()].Moved();

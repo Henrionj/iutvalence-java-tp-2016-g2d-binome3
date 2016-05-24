@@ -19,6 +19,11 @@ public class Rook extends Piece
 	 * 
      */
 	private boolean isMoved;
+	/**
+	 * Check if the Rook have been moved
+	 * this method is usefull to know if the player can whether or not do a castling.
+	 * @param color The color of the piece.
+	 */
 	
 	public Rook(Color color)
 	{
@@ -101,11 +106,15 @@ public class Rook extends Piece
 			return false;
 	}
 
-
+	/**
+	 * Check if the rook have been move during the game.
+	 */
 	public boolean isMoved() {
 		return isMoved;
 	}
-	
+	/**
+	 * Check if the piece is a rook.
+	 */
 	public boolean isRook()
 	{
 		return true;

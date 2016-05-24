@@ -4,7 +4,7 @@ import fr.iutvalence.henrionjulien.chess.Point;
 
 
 /**
- *  A piece on the chessboard.Can't be created except his children.
+ *  A piece on the chessboard.Can't be created except his heirs.
  *
  * @author henrion & murer
  * @version 1
@@ -19,7 +19,7 @@ public abstract class Piece
 
 	/**
 	 * The constructor for the Piece
-	 * @param color the color of the piece
+	 * @param color The color of the piece.
      */
 	protected Piece(Color color)
 	{

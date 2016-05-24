@@ -8,7 +8,8 @@ import fr.iutvalence.henrionjulien.chess.piece.NoMoveException;
 import fr.iutvalence.henrionjulien.chess.piece.Rook;
 
 /**
- * TODO.
+ * The game class
+ * contains the rules of a basic chess game.
  *
  * @author henrion & murer
  * @version V1
@@ -21,15 +22,16 @@ public class Game
 	private final Scanner s;
 	/** current turn odd define the turn of the white player, even for the black. */
 	private int turn = 1;
-	
+	/** Name of the player 1 */
 	private String player1;
+	/** Name of the player 2 */
 	private String player2;
 
 
 	/**
 	 * Create a board
 	 * the game is running while the 2 kings are alive
-	 * The game begins with the player who plays the white pieces.
+	 * The game begins with the player who plays the white pieces.(Player 1)
 	 */
 	public Game(String p1, String p2, Scanner scanner)
 	{
@@ -165,7 +167,7 @@ public class Game
 	}
 	/**
 	 * 
-	 * Start a new turn and add 1 to turn attribut
+	 * Start a new turn and add 1 to the turn attribut
 	 * The next player can perform an action.
 	 */
 	public Color newTurn()
@@ -181,7 +183,7 @@ public class Game
 	}
 
 	/**
-	 * When a pawn reach the last row, he can perform a promotion and choose among the piece in his own the cemetery
+	 * When a pawn reach the last row, he can perform a promotion and choose among the piece in his own cemetery
 	 * @param current
 	 */
 	public void promotePawn(Point current)
