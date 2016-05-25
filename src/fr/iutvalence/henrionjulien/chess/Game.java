@@ -5,7 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import fr.iutvalence.henrionjulien.chess.piece.Color;
@@ -16,7 +19,7 @@ import fr.iutvalence.henrionjulien.chess.piece.Rook;
  * The game class
  * contains the rules of a basic chess game.
  *
- * @author henrion & murer
+ * @author Henrion & Murer
  * @version V1
  */
 public class Game
@@ -24,7 +27,7 @@ public class Game
 	/** Chessboard of the game. */
 	private final Board board;
 	/**A scanner use to key in data from the keyboard.*/
-	private final Scanner s;
+	private Scanner s;
 	/** current turn odd define the turn of the white player, even for the black. */
 	private int turn = 1;
 	/** Name of the player 1 */
@@ -35,6 +38,8 @@ public class Game
 	
 	 private FileOutputStream fileWriter = null;
 	 private FileInputStream fileReader = null;
+	 private File file = new File("chessSave.txt");
+	 private List<byte[]> save;
 	 
 
 
@@ -49,11 +54,29 @@ public class Game
 		this.s = scanner;
 		this.player1 = p1;
 		this.player2 = p2;
+		this.save = new ArrayList<byte[]>();
 		  try 
 			{
-			    fileReader = new FileInputStream(new File("chessSave.txt"));
-				this.readSave();
-			    fileWriter = new FileOutputStream(new File("chessSave.txt"));
+			    fileReader = new FileInputStream(file);
+				if(file.length() != 0)
+				{
+				    System.out.println("Would you like to load the last save?0 = yes/1 = no");
+				    char ans = s.nextLine().charAt(0);
+				    if(ans == '0')
+				    {
+				    	 this.readSave();
+				    	 fileWriter = new FileOutputStream(file);
+						 this.backUp();
+				    }
+				    if(ans != '0')
+				    {
+				    	 fileWriter = new FileOutputStream(file);
+				    }
+			    }
+				else
+				{
+					fileWriter = new FileOutputStream(file);
+				}
 			} catch (FileNotFoundException e) 
 			{
 				System.out.println("File not found.");
@@ -82,7 +105,7 @@ public class Game
 			while(currentPiece == null)
 			{
 				currentPiece = null;
-				System.out.println("\ndonnez la position x,puis la position y de la piece:");	
+				System.out.println("\nKey in the  x position,then the y position of the piece:");	
 				try 
 				{
 					currentPiece = this.askPosition(currentPiece);
@@ -91,7 +114,8 @@ public class Game
 				}
 				catch (PointException e)
 				{
-					System.out.println("Coordonnées invalides, veuillez saisir un chiffre entre 0 et 7 pour x et y.");
+					System.out.println("positions invalid,please key in a number between 0 and 7 for x and y.");
+					s = new Scanner(System.in);
 				}
 			}
 			/*
@@ -104,14 +128,14 @@ public class Game
 				System.out.println(this.board.getPiece(currentPiece).toString());
 				while(nextCase == null)
 				{
-					System.out.println("donnez la position x,puis la position y du déplacement:");
+					System.out.println("key in x position,then y position");
 					try 
 					{
 						nextCase = this.askPosition(nextCase);
 					}
 					catch (PointException e)
 					{
-						System.out.println("Coordonnées invalides, veuillez saisir un chiffre entre 0 et 7 pour x et y.");
+						System.out.println("positions invalid,please key in a number between 0 and 7 for x and y.");
 						nextCase = null;
 					}
 				}
@@ -139,7 +163,7 @@ public class Game
 							save[5] = nextCase.getCharX();
 							save[6] = nextCase.getCharY();
 							this.promotePawn(nextCase);
-							System.out.println("Déplacement effectué!");
+							System.out.println("Done!");
 							this.board.display();
 							System.out.println("\n\n\n\n*********************************************************************************************");
 							turn++;	
@@ -148,26 +172,26 @@ public class Game
 						}
 						else
 						{
-							System.out.println("Mouvement non autorisé, la case contient une autre pièce de même couleur.");
+							System.err.println("move invalid, you can't eat your own piece.");
 						}
 
 					}
 					else
 					{
-						System.out.println("mouvement non autorisé, la pièce ne peut faire un tel mouvement.");
+						System.out.println("move invalid, the piece can't do this.");
 					}
 				} catch (NoMoveException e) {
-					System.out.println("Vous ne pouvez pas déplacer la pièce sur elle même!");
+					System.out.println("you can't move your piece on the same position");
 				}
 
 			}
 
 			else
 			{
-				System.out.println("Vous ne possédez pas cette piece!");
+				System.out.println("You don't own this piece");
 			}
 		}
-		System.out.printf("Les %s gagnent", currentColor == Color.WHITE ? "Blancs" : "Noirs");
+		System.out.printf(" %s win", currentColor == Color.WHITE ? "Whites" : "Blacks");
 
 		this.exit();
 
@@ -178,6 +202,14 @@ public class Game
 	public void exit()
 	{
 		System.out.println("******exit******");
+		s.close();
+		try {
+			fileReader.close();
+			fileWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * Ask the position in the array  to do a  move.
@@ -193,12 +225,12 @@ public class Game
 			if(p.getX()<0 || p.getX()>7 || 
 					p.getY()<0 || p.getY()>7)
 			{
-				throw new PointException("coordonnée invalide");
+				throw new PointException("invalid coordonates");
 			}
 		}
 		catch(InputMismatchException e)
 		{
-			throw new PointException("déplacement invalide.", e);			
+			throw new PointException("move invalid.", e);			
 		}
 
 
@@ -261,6 +293,8 @@ public class Game
 				sizeRightCastling = 0;
 		boolean leftCastling = true,
 				rightCastling = true;
+
+		
 		for(int i = 0;i<8;i++)
 		{
 			if(this.board.getPiece(new Point(i,7)).isKing())
@@ -299,15 +333,16 @@ public class Game
 		}
 		if(!leftCastling && !rightCastling)
 			return false;
-		System.out.println("\nRoque possible, voulez vous en effectuer un? 0 = oui/1 = non");
+		System.out.println("\n one castling possible, would you like to do one? 0 = yes/1 = no");
 		if(s.nextInt() == 1)
 			return false;
 		System.out.println("left = "+sizeLeftCastling + " right = " + sizeRightCastling);
+		Point kingPosition = new Point(kingX,7);
 		if(leftCastling && rightCastling)
 		{
 			int answer = -1;
-			System.out.println("deux roques possibles, voulez vous effectuer un roque par la droite ou par la gauche?"
-					+ "\n 0 = Droite / 1 = Gauche");
+			System.out.println("Two castlings are possible, Would you like to do a castling  to the right or to the left ?"
+					+ "\n 0 = Right / 1 = Left");
 			answer = s.nextInt();
 			if(answer == 1)
 			{
@@ -315,12 +350,22 @@ public class Game
 				switch(sizeLeftCastling)
 				{
 				case 2:
-					board.move(new Point(kingX,7),new Point(1,7));
+					board.move(kingPosition,new Point(1,7));
+					char[]kBigL = {'K','0','7','C','E','1','7'};
+					kBigL[1] = kingPosition.getCharX();
+					this.writeTurn(kBigL);
 					board.move(new Point(0,7),new Point(2,7));
+					char[]rBigL = {'R','0','7','C','G','2','7'};
+					this.writeTurn(rBigL);
 					break;
 				case 3:
 					board.move(new Point(kingX,7),new Point(2,7));
+					char[]kLittleL = {'K','0','7','C','E','2','7'};
+					kLittleL[1] = kingPosition.getCharX();
+					this.writeTurn(kLittleL);
 					board.move(new Point(0,7),new Point(3,7));
+					char[]rLittleL = {'R','0','7','C','G','3','7'};
+					this.writeTurn(rLittleL);
 					break;
 
 				}
@@ -332,11 +377,21 @@ public class Game
 				{
 				case 2:
 					board.move(new Point(kingX,7),new Point(6,7));
-					board.move(new Point(0,7),new Point(5,7));
+					char[]kBigR = {'K','0','7','C','E','6','7'};
+					kBigR[1] = kingPosition.getCharX();
+					this.writeTurn(kBigR);
+					board.move(new Point(7,7),new Point(5,7));
+					char[]rBigR = {'R','7','7','C','G','5','7'};
+					this.writeTurn(rBigR);
 					break;
 				case 3:
 					board.move(new Point(kingX,7),new Point(5,7));
-					board.move(new Point(0,7),new Point(4,7));
+					char[]kLittleR = {'K','0','7','C','E','5','7'};
+					kLittleR[1] = kingPosition.getCharX();
+					this.writeTurn(kLittleR);
+					board.move(new Point(7,7),new Point(4,7));
+					char[]rLittleR = {'R','7','7','C','G','4','7'};
+					this.writeTurn(rLittleR);
 					break;
 
 				}
@@ -351,12 +406,22 @@ public class Game
 			switch(sizeLeftCastling)
 			{
 			case 2:
-				board.move(new Point(kingX,7),new Point(1,7));
+				board.move(kingPosition,new Point(1,7));
+				char[]kBigL = {'K','0','7','C','E','1','7'};
+				kBigL[1] = kingPosition.getCharX();
+				this.writeTurn(kBigL);
 				board.move(new Point(0,7),new Point(2,7));
+				char[]rBigL = {'R','0','7','C','G','2','7'};
+				this.writeTurn(rBigL);
 				break;
 			case 3:
 				board.move(new Point(kingX,7),new Point(2,7));
+				char[]kLittleL = {'K','0','7','C','E','2','7'};
+				kLittleL[1] = kingPosition.getCharX();
+				this.writeTurn(kLittleL);
 				board.move(new Point(0,7),new Point(3,7));
+				char[]rLittleL = {'R','0','7','C','G','3','7'};
+				this.writeTurn(rLittleL);
 				break;
 
 			}
@@ -369,11 +434,21 @@ public class Game
 			{
 			case 2:
 				board.move(new Point(kingX,7),new Point(6,7));
-				board.move(new Point(0,7),new Point(5,7));
+				char[]kBigR = {'K','0','7','C','E','6','7'};
+				kBigR[1] = kingPosition.getCharX();
+				this.writeTurn(kBigR);
+				board.move(new Point(7,7),new Point(5,7));
+				char[]rBigR = {'R','7','7','C','G','5','7'};
+				this.writeTurn(rBigR);
 				break;
 			case 3:
 				board.move(new Point(kingX,7),new Point(5,7));
-				board.move(new Point(0,7),new Point(4,7));
+				char[]kLittleR = {'K','0','7','C','E','5','7'};
+				kLittleR[1] = kingPosition.getCharX();
+				this.writeTurn(kLittleR);
+				board.move(new Point(7,7),new Point(4,7));
+				char[]rLittleR = {'R','7','7','C','G','4','7'};
+				this.writeTurn(rLittleR);
 				break;
 			}
 		}
@@ -383,7 +458,11 @@ public class Game
 		board.invertBoard();
 		return true;
 	}
-	
+	/**
+	 * Write the save into the document chessSave.txt
+	 * The document is write with bytes.
+	 * @param turnSave Save the data of the turn played into the saveChess.txt
+	 */
 	 public void writeTurn(char turnSave[])
 	 {
 		 	byte[] endLine = {10};
@@ -407,42 +486,75 @@ public class Game
 			  }	    
 	 }
 	 
-	  
+	  /**
+	   * Read the save each time the  game is launch.
+	   */
 	 public void readSave()
 	 {
 		 Point currentPiece;
 		 Point nextCase;
-		 byte[] save = new byte[9];
+		 byte[] line = new byte[8];
 		 int end = 0;
 		 try {
-			while ( end != -1) 
+			end = fileReader.read(line);
+			while ( end != -1)// && fileReader.available() > 0) 
 			{
-				end = fileReader.read(save);
-				currentPiece = new Point((int)save[1]-48,(int)save[2]-48);
-		    	nextCase = new Point((int)save[5]-48,(int)save[6]-48);
-			    switch(save[3])
-			    {
-				    case (byte)'M':
-				    	board.eat(board.getPiece(nextCase));
-						board.move(currentPiece,nextCase);
-						this.board.display();
-						System.out.println("\n\n\n\n*********************************************************************************************");
-						turn++;	
-						board.invertBoard();
-				    	break;
-				    case (byte)'P':
-				    	break;
-				    case (byte)'C':
-				    	break;
-			    }
+				
+				currentPiece = new Point((int)line[1]-48,(int)line[2]-48);
+		    	nextCase = new Point((int)line[5]-48,(int)line[6]-48);
+		    	
+				board.eat(board.getPiece(nextCase));
+			    board.move(currentPiece,nextCase);
+			    this.board.display();
+			    System.out.println("\n\n\n\n*********************************************************************************************");
+			   if((byte)line[4] ==(byte)'G')
+				   board.invertBoard();
 			    
-		            
-			    save = new byte[9];
+			    turn++;	
+			    board.invertBoard();
+
+			    
+			    
+		        this.save.add(line);   
+			    line = new byte[8];
+				end = fileReader.read(line);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	 }
+	 /**
+	  * Store the previous save in order to be used the next time the game is launch.
+	  */
+	 public void backUp()
+	 {
+		    
+			byte[] line = new byte[8];
+			line[7] = 10;
+			
+			int indice = 0;
+			for(int i = 0;i<this.save.size();i++)
+			{ 
+			for (byte b : this.save.get(i))
+		     {
+		    	 
+		    	  line[indice] = (byte)b;
+		    	  indice++;
+		      }
+			
+		      try 
+		      {
+				  fileWriter.write(line);
+					      
+		      
+		      } catch (IOException e) 
+		      {
+				  e.printStackTrace();
+			  }	 
+		      line = new byte[8];
+		      indice = 0;
+			}
 	 }
 
 

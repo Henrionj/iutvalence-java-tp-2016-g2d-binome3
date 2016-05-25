@@ -42,13 +42,19 @@ public class Point
 	public String toString() {
 		return "Point [ "+ x + " , " + y + "]";
 	}
-	
+	/**
+	 * 
+	 * @return x the attribut of position X for abscisse as a char
+	 */
 	public char getCharX()
 	{
 		String charX = "" + x;
 		return charX.charAt(0);
 	}
-	
+	/**
+	 * 
+	 * @return y the attribut of position Y as a char
+	 */
 	public char getCharY()
 	{
 		String charY = "" + y;
