@@ -190,7 +190,7 @@ public class Game
 			{
 				System.out.println("You don't own this piece");
 			}
-		}
+		} 
 		System.out.printf(" %s win", currentColor == Color.WHITE ? "Whites" : "Blacks");
 
 		this.exit();
