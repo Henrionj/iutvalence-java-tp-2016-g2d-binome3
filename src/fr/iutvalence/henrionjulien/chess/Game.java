@@ -412,12 +412,11 @@ public class Game
 	 {
 		 Point currentPiece;
 		 Point nextCase;
-		 byte[] save = new byte[7];
+		 byte[] save = new byte[9];
 		 int end = 0;
 		 try {
 			while ( end != -1) 
 			{
-				System.out.println(end);
 				end = fileReader.read(save);
 				currentPiece = new Point((int)save[1]-48,(int)save[2]-48);
 		    	nextCase = new Point((int)save[5]-48,(int)save[6]-48);
@@ -436,8 +435,9 @@ public class Game
 				    case (byte)'C':
 				    	break;
 			    }
+			    
 		            
-			    save = new byte[7];
+			    save = new byte[9];
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
